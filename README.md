@@ -12,6 +12,6 @@ SCRUM Master: Shatat Al Hamid
 Group Members:
 Dana Wan (dana.wan@mail.utoronto.ca),
 Keelan Gan (keelan.gan@mail.utoronto.ca),
-Dujanah Zayn (),
+Dujanah Zayn (dujanah.zayn@mail.utoronto.ca),
 Ousman Jikineh (),
 Shatat Al Hamid (shatat.alhamid@mail.utoronto.ca)
