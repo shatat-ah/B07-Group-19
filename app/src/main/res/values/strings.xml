@@ -10,4 +10,15 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <!-- LOGIN / SIGN UP-->
+    <string name="student">Student</string>
+    <string name="admin">Admin</string>
+    <string name="admin_login">ADMIN LOGIN</string>
+    <string name="student_login">STUDENT LOGIN</string>
+    <string-array name="dropdown_items">
+        <item>Student</item>
+        <item>Administrator</item>
+    </string-array>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
