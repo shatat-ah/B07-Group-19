@@ -13,5 +13,5 @@ Group Members:
 Dana Wan (dana.wan@mail.utoronto.ca),
 Keelan Gan (keelan.gan@mail.utoronto.ca),
 Dujanah Zayn (dujanah.zayn@mail.utoronto.ca),
-Ousman Jikineh (),
+Ousman Jikineh (o.jikineh@mail.utoronto.ca),
 Shatat Al Hamid (shatat.alhamid@mail.utoronto.ca)
