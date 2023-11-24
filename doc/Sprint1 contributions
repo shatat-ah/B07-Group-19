@@ -1,0 +1,13 @@
+Tuesday Nov 21
+  Ousman - created login and signup activity, as well as fragments student and admin login.  Next day, I plan to get a tab layout login page working
+
+Wednesday Nov 22
+  Ousman - finished the tablayout login login page, and create home page activities of student and admin. Ran into problems regarding gradle sync. Next day I plan to create
+  layout of home pages
+
+Thursday Nov 23
+    Ousman - completed the layout of the home page of student and admin, connected the signup and login pages, and started refactoring the login to modules to conform to MVP. 
+    I also connected user authentification tools of firebase. Next day, I plan to hopefully complete the user authentification system
+
+Friday Nov 24
+      
