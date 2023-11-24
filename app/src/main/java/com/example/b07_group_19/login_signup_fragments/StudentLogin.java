@@ -46,7 +46,7 @@ public class StudentLogin extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Initialize the button here
-        signup = view.findViewById(R.id.signup_button);
+        signup = (Button)view.findViewById(R.id.student_switch_signup_button);
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override

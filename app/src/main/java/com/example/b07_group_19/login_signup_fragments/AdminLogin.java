@@ -45,7 +45,7 @@ public class AdminLogin extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Initialize the button here
-        btn_signup = view.findViewById(R.id.signup_button);
+        btn_signup = view.findViewById(R.id.admin_switch_signup_button);
 
         btn_signup.setOnClickListener(new View.OnClickListener() {
             @Override
