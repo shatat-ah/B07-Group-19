@@ -13,6 +13,8 @@
     <!-- LOGIN / SIGN UP-->
     <string name="student">Student</string>
     <string name="admin">Admin</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
     <string name="admin_login">ADMIN LOGIN</string>
     <string name="student_login">STUDENT LOGIN</string>
     <string-array name="dropdown_items">
