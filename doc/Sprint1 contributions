@@ -1,13 +1,20 @@
-Tuesday Nov 21
+Tuesday, Nov 21
   Ousman - created login and signup activity, as well as fragments student and admin login.  Next day, I plan to get a tab layout login page working
 
-Wednesday Nov 22
-  Ousman - finished the tablayout login login page, and create home page activities of student and admin. Ran into problems regarding gradle sync. Next day I plan to create
-  layout of home pages
+Wednesday, Nov 22
+  Ousman - finished the tab layout login page, and created home page activities of student and admin. Ran into problems regarding gradle sync. Next day I plan to create
+  the layout of home pages
 
-Thursday Nov 23
+Thursday, Nov 23
     Ousman - completed the layout of the home page of student and admin, connected the signup and login pages, and started refactoring the login to modules to conform to MVP. 
-    I also connected user authentification tools of firebase. Next day, I plan to hopefully complete the user authentification system
+    I also connected the user realtime database tools of Firebase. Next day, I plan to hopefully complete the user authentification system
 
-Friday Nov 24
-      
+Friday, Nov 24
+    Ousman - not much done. I took time to study for my midterm tomorrow
+Saturday, Nov 25
+  Ousman - not much done. I reviewed for my midterm
+Sunday, Nov 26
+  Ousman - Completed main functionality of user signup and login. I was having difficulty understanding how to communicate between fragments
+  and activities, so I decided to remove the tab layout for now, to prioritize functionality and time
+Monday, Nov 27
+  Ousman - worked on UI and functionality of homepages. In sprint 2 I will connect both home pages to my team member's other modules.
