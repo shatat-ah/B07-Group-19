@@ -9,8 +9,8 @@
     <color name="white">#FFFFFFFF</color>
 
     // B07 Project Colours
-    <color name="background">#5E6C78</color>
-    <color name="accent_light">#B2C3D3</color>
+    <color name="background">#88A0B4</color>
+    <color name="accent_light">#B9CFE3</color>
     <color name="accent_dark">#243140</color>
     <color name="accent_grey">#6F7275</color>
     <color name="font_black">#2B2B2B</color>
