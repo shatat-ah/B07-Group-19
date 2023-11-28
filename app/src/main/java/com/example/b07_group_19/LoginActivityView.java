@@ -1,107 +1,107 @@
 package com.example.b07_group_19;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.tabs.TabLayout;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-public class LoginActivityView extends AppCompatActivity{
-
-    private TabLayout tabLayout;
-    private ViewPager2 viewPager2;
-    private ViewPagerAdapter adapter;
-
-    private FirebaseAuth mAuth;
-    private FirebaseAuth.AuthStateListener mAuthListener;
-
+public class LoginActivityView extends AppCompatActivity implements Authenticate{
+    private EditText usernameEditText, passwordEditText;
+    private Button loginButton;
+    private Spinner spinner;
+    private TextView back_to_signup;
+    LoginActivityPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_view);
 
-        mAuth = FirebaseAuth.getInstance();
-        mAuthListener = new FirebaseAuth.AuthStateListener() {
+        presenter = new LoginActivityPresenter(this, new LoginActivityModel());
+        loginButton = (Button)findViewById(R.id.login_button);
+        usernameEditText = findViewById(R.id.login_username);
+        passwordEditText = findViewById(R.id.login_password);
+        back_to_signup = findViewById(R.id.switch_signup);
+        spinner = findViewById(R.id.login_spinner);
+        String[] Larray = getResources().getStringArray(R.array.dropdown_items);
+        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_spinner_item, Larray);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user!=null){
-                    //Log.d()
+            public void onClick(View v) {
+                String username, password, role;
+                username = String.valueOf(usernameEditText.getText());
+                password = String.valueOf(passwordEditText.getText());
+                switch(spinner.getSelectedItemPosition()){
+                    case 1:
+                        role = "Admin";
+                        break;
+                    default:
+                        role = "Student";
+                        break;
                 }
 
+                if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+                    missingField();
+                }
+                else{
+                    existing_user(username, role, password);
+                }
             }
-        };
-        //USER INPUT
-
-
-
-
-
-        //View Layout
-
-        tabLayout = findViewById(R.id.tab_layout);
-        viewPager2 = findViewById(R.id.login_view_pager);
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        adapter = new ViewPagerAdapter(fragmentManager, getLifecycle());
-        viewPager2.setAdapter(adapter);
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        });
+        back_to_signup.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager2.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
+            public void onClick(View v) {
+                openSignupActivity();
             }
         });
 
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                tabLayout.selectTab(tabLayout.getTabAt(position));
-            }
-        });
     }
-
+    public void existing_user(String username, String role, String password){
+        presenter.checkDBuser(username, role, password);
+    }
     @Override
-    public void onStart() {
-        super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+    public void missingField(){
+        Toast.makeText(LoginActivityView.this,"Enter Missing Field",Toast.LENGTH_SHORT).show();
     }
-
-    public void updateUI(FirebaseUser firebaseUser){
-        //Check whether they are on the student login fragment or Admin log in fragment
-        /*if(){
-            Intent intent = new Intent(this, StudentHomeActivity.class);
-            startActivity(intent);
+    public void userExist(String role){
+        Toast.makeText(LoginActivityView.this,"User Exist!",Toast.LENGTH_SHORT).show();
+        if (role.equals("Student")){
+            openStudentHome();
         }
         else{
-            Intent intent = new Intent(this, AdminHomeActivity.class);
-            startActivity(intent);
-        }*/
+            openAdminHome();
+        }
+
     }
 
 
+    public void userNotFound() {
+        Toast.makeText(LoginActivityView.this,"Invalid Credentials",Toast.LENGTH_SHORT).show();
+    }
+
+    public void openSignupActivity(){
+        Intent intent = new Intent(this, SignupActivityView.class);
+        startActivity(intent);
+        finish();
+    }
+    public void openStudentHome(){
+        Intent intent = new Intent(LoginActivityView.this, StudentHomeActivity.class);
+        startActivity(intent);
+    }
+    public void openAdminHome(){
+        Intent intent = new Intent(LoginActivityView.this, AdminHomeActivity.class);
+        startActivity(intent);
+    }
 
 }

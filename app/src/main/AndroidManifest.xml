@@ -19,7 +19,7 @@
             android:name=".StudentHomeActivity"
             android:exported="false" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".SignupActivityView"
             android:exported="false" />
         <activity
             android:name=".LoginActivityView"

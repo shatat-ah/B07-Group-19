@@ -2,23 +2,27 @@ package com.example.b07_group_19;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
-public class StudentHomeActivity extends AppCompatActivity {
+public class StudentHomeActivity extends AppCompatActivity implements  HomeFunction{
 
-    private CardView post_card;
-    private CardView even_card;
-    private CardView compl_card;
-    private CardView announce_card;
+    private CardView post_card, even_card, compl_card, announce_card;
+    private TextView logOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home);
 
-        post_card = findViewById(R.id.post_requirements_card);
+        logOut = findViewById(R.id.logout_btn);
+        post_card = findViewById(R.id.post_card);
         post_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,7 +31,7 @@ public class StudentHomeActivity extends AppCompatActivity {
             }
         });
 
-        even_card = findViewById(R.id.events_card);
+        even_card = findViewById(R.id.rsvp_card);
         even_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -35,7 +39,7 @@ public class StudentHomeActivity extends AppCompatActivity {
                 //startActivity(intent);
             }
         });
-        compl_card = findViewById(R.id.complaints_card);
+        compl_card = findViewById(R.id.complaint_card);
         compl_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -51,5 +55,19 @@ public class StudentHomeActivity extends AppCompatActivity {
                 //startActivity(intent);
             }
         });
+
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                redirectLogin(StudentHomeActivity.this);
+            }
+        });
+    }
+
+
+    @Override
+    public void redirectLogin(Activity activity) {
+        Intent intent = new Intent(activity, LoginActivityView.class);
+        startActivity(intent);
     }
 }

@@ -12,7 +12,7 @@
         android:id="@+id/student_or_admin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Log in as a..."
+        android:text="I am a..."
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,9 +22,9 @@
 
 
     <Spinner
-        android:id="@+id/login_spinner"
-        android:layout_width="192dp"
-        android:layout_height="86dp"
+        android:id="@+id/signup_spinner"
+        android:layout_width="179dp"
+        android:layout_height="68dp"
         android:layout_marginStart="102dp"
         android:layout_marginEnd="102dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,43 +34,53 @@
         app:layout_constraintVertical_bias="0.056"></Spinner>
 
     <EditText
-        android:id="@+id/login_username"
-        android:layout_width="310dp"
+        android:id="@+id/signup_email"
+        android:layout_width="312dp"
         android:layout_height="63dp"
         android:layout_marginStart="32dp"
         android:layout_marginEnd="32dp"
-        android:hint="username"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:hint="email"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.329">
+        app:layout_constraintTop_toBottomOf="@+id/signup_spinner">
 
     </EditText>
 
     <EditText
-        android:id="@+id/login_password"
-        android:layout_width="308dp"
-        android:layout_height="74dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginEnd="32dp"
-        android:hint="password"
-        app:layout_constraintBottom_toTopOf="@+id/login_button"
+        android:id="@+id/signup_username"
+        android:layout_width="312dp"
+        android:layout_height="63dp"
+        android:hint="username"
+        app:layout_constraintBottom_toTopOf="@+id/signup_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/student_or_admin"
-        app:layout_constraintVertical_bias="0.8">
+        app:layout_constraintTop_toBottomOf="@+id/signup_email">
 
     </EditText>
 
 
+    <EditText
+        android:id="@+id/signup_password"
+        android:layout_width="308dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:hint="password"
+        app:layout_constraintBottom_toTopOf="@+id/signup_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.85">
+
+    </EditText>
+
     <Button
-        android:id="@+id/login_button"
+        android:id="@+id/signup_button"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_gravity="center"
-        android:text="Log in"
+        android:text="Sign up"
         android:textSize="18sp"
         app:cornerRadius="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -78,19 +88,19 @@
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.64" />
+        app:layout_constraintVertical_bias="0.7" />
 
     <TextView
-        android:id="@+id/switch_signup"
+        android:id="@+id/switch_login"
         android:layout_width="300dp"
         android:layout_height="60dp"
-        android:text="Not a user? Sign up"
+        android:text="Already a user? Log in"
         android:textAlignment="center"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintTop_toBottomOf="@+id/signup_button"
         app:layout_constraintVertical_bias="0.110000014" />
 
 
