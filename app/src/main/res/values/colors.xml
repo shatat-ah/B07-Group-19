@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    // B07 Project Colours
+    <color name="background">#5E6C78</color>
+    <color name="accent_light">#B2C3D3</color>
+    <color name="accent_dark">#243140</color>
+    <color name="accent_grey">#6F7275</color>
+    <color name="font_black">#2B2B2B</color>
+    <color name="font_white">#FFFFFF</color>
 </resources>
