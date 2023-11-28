@@ -4,17 +4,9 @@ public class PostReqActivity {
     int a22 = 0, a31 = 0, a37 = 0, a48 = 0, a67 = 0; // Marks for each course
     boolean admission = true; // Are they in stream or not?
 
-    public void getReq(int a22, int a31, int a37, int a48, int a67, boolean admission){
-
-    }
-
-    public int computeAvg(int a22, int a31, int a37, int a48, int a67){
-        return (a22 + a31 + a37 + a48 + a67)/5;
-    }
-
     public String checkReq(int a22, int a31, int a37, int a48, int a67, boolean admission){
 
-        int avg = computeAvg(a22,a31,a37,a48,a67);
+        int avg = (a22 + a31 + a37 + a48 + a67)/5;
 
         if (admission == true){
             if (a48>73 && avg>70 && ((a22>60 && a37>60) || (a67>60 && a37>60) || (a22>60 && a67>60))){
