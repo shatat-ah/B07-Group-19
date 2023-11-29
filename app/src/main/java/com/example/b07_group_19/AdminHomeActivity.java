@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class AdminHomeActivity extends AppCompatActivity implements HomeFunction{
 
     private CardView feedback, schedule, complaints, new_announcement;
@@ -58,6 +60,7 @@ public class AdminHomeActivity extends AppCompatActivity implements HomeFunction
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 redirectLogin(AdminHomeActivity.this);
             }
         });
