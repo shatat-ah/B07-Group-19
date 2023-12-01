@@ -30,5 +30,7 @@
     <string name="announcement_message_hint">Write your announcement here. (max. 250 char)</string>
     <string name="cancel_announcement">CANCEL</string>
     <string name="publish_announcement">PUBLISH</string>
+    <string name="successful_announcement_creation">You\'re announcement has been published.</string>
+    <string name="return_to_homepage">RETURN</string>
 
 </resources>

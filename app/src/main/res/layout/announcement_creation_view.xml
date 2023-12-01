@@ -11,7 +11,7 @@
         android:id="@+id/announcementTitle"
         android:layout_width="0dp"
         android:layout_height="42dp"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="50dp"
         android:layout_marginBottom="16dp"
         android:fontFamily="sans-serif-medium"
         android:text="@string/announcement_title"
@@ -87,7 +87,7 @@
     </androidx.cardview.widget.CardView>
 
     <Button
-        android:id="@+id/publish_button"
+        android:id="@+id/publish_announcement_button"
         android:layout_width="108dp"
         android:layout_height="61dp"
         android:layout_marginStart="16dp"
@@ -97,8 +97,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/messageInputContainer"
         app:layout_constraintStart_toEndOf="@+id/cancel_announcement_button"
-        app:layout_constraintTop_toBottomOf="@+id/messageInputContainer"
-        app:layout_constraintVertical_bias="0.284" />
+        app:layout_constraintTop_toTopOf="@+id/cancel_announcement_button"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/cancel_announcement_button"
@@ -109,10 +109,10 @@
         android:text="@string/cancel_announcement"
         app:cornerRadius="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/publish_button"
+        app:layout_constraintEnd_toStartOf="@+id/publish_announcement_button"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/messageInputContainer"
         app:layout_constraintTop_toBottomOf="@+id/messageInputContainer"
-        app:layout_constraintVertical_bias="0.284" />
+        app:layout_constraintVertical_bias="0.411" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,11 @@
         android:theme="@style/Theme.B07Group19"
         tools:targetApi="31">
         <activity
+            android:name=".SuccessfulAnnouncementActivity"
+            android:exported="false"
+            android:label="SuccessfulAnnouncementActivity"
+            android:theme="@style/Theme.B07Group19" />
+        <activity
             android:name=".CreateAnnouncementView"
             android:exported="false"
             android:label="@string/title_activity_create_announcement"
