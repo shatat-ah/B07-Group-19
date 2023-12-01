@@ -17,12 +17,12 @@
         <activity
             android:name=".SuccessfulAnnouncementActivity"
             android:exported="false"
-            android:label="SuccessfulAnnouncementActivity"
+            android:label="Announcement Successful"
             android:theme="@style/Theme.B07Group19" />
         <activity
             android:name=".CreateAnnouncementView"
             android:exported="false"
-            android:label="@string/title_activity_create_announcement"
+            android:label="Create Announcement"
             android:theme="@style/Theme.B07Group19" />
         <activity
             android:name=".AdminHomeActivity"
