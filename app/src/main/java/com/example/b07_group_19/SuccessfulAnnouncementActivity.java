@@ -1,18 +1,13 @@
 package com.example.b07_group_19;
 
-import android.content.Intent;
-
 import android.os.Bundle;
-import android.widget.Button;
 import android.view.View;
+import android.widget.Button;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SuccessfulAnnouncementActivity extends AppCompatActivity{
     Button returnHome;
-    public void returnHome(){
-        Intent intent = new Intent(SuccessfulAnnouncementActivity.this, AdminHomeActivity.class);
-        startActivity(intent);
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,7 +18,7 @@ public class SuccessfulAnnouncementActivity extends AppCompatActivity{
         returnHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                returnHome();
+                onBackPressed();
             }
         });
     }

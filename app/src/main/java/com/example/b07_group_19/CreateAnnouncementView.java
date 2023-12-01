@@ -16,12 +16,6 @@ public class CreateAnnouncementView extends AppCompatActivity {
 
     private CreateAnnouncementPresenter presenter;
 
-
-    public void returnHome(){
-        Intent intent = new Intent(CreateAnnouncementView.this, AdminHomeActivity.class);
-        startActivity(intent);
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +25,7 @@ public class CreateAnnouncementView extends AppCompatActivity {
         cancelAnnouncement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                returnHome();
+                onBackPressed();
             }
         });
 
@@ -46,6 +40,7 @@ public class CreateAnnouncementView extends AppCompatActivity {
                 Announcement announcement = new Announcement();
                 announcement.setTitle(title.getText().toString());
                 announcement.setMessage(message.getText().toString());
+
                 presenter.publishAnnouncement(announcement);
             }
         });
@@ -57,6 +52,14 @@ public class CreateAnnouncementView extends AppCompatActivity {
     }
 
     public void publishAnnouncement(Announcement announcement){
+    }
+
+    public void success(Announcement announcement){
+        onBackPressed();
         showAnnouncementSuccessful();
+    }
+
+    public void fail(){
+        onBackPressed();
     }
 }

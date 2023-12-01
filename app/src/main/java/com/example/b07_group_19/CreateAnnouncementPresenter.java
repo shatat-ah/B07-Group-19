@@ -14,10 +14,10 @@ public class CreateAnnouncementPresenter {
     public void publishAnnouncement(Announcement announcement){
         if (announcement.getTitle().isEmpty()){
             Toast.makeText(view.getApplicationContext(), "Announcement creation unsuccessful; title cannot be empty.", Toast.LENGTH_SHORT).show();
-            view.returnHome();
+            view.fail();
         } else {
             model.addAnnouncement(announcement);
-            view.publishAnnouncement(announcement);
+            view.success(announcement);
         }
     }
 }
