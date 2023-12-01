@@ -103,5 +103,9 @@ public class LoginActivityView extends AppCompatActivity implements Authenticate
         Intent intent = new Intent(LoginActivityView.this, AdminHomeActivity.class);
         startActivity(intent);
     }
+    @Override
+    public void authError() {
+        Toast.makeText(LoginActivityView.this,"Authentication Error", Toast.LENGTH_SHORT).show();
+    }
 
 }

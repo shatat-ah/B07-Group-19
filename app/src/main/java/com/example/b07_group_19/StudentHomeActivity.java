@@ -15,7 +15,7 @@ import android.widget.TextView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class StudentHomeActivity extends AppCompatActivity implements  HomeFunction{
-    private CardView post_card, even_card, compl_card, announce_card;
+    private CardView post_card, even_card, compl_card, announce_card, feedback_card;
     private TextView logOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,10 +52,21 @@ public class StudentHomeActivity extends AppCompatActivity implements  HomeFunct
         announce_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(this, );
-                //startActivity(intent);
+                Intent intent = new Intent(StudentHomeActivity.this, TEST.class);
+                startActivity(intent);
             }
         });
+
+        feedback_card = findViewById(R.id.feedback_card);
+        feedback_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(StudentHomeActivity.this, AttendedEventsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override

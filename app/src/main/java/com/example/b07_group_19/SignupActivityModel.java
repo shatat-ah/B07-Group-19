@@ -36,14 +36,18 @@ public class SignupActivityModel {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    presenter.accountFound();
+                    for (DataSnapshot userSnapshot : snapshot.getChildren()) {
+                        String role2 = userSnapshot.child("role").getValue(String.class);
+                        presenter.displayResult(true, role2);
+                        return;
+                    }
                 }
                 else {
                     user_ref.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.exists()){
-                                presenter.displayResult(snapshot.exists());
+                                presenter.view.uniqueUsername();
                             }
                             else{
                                 mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {
@@ -51,7 +55,7 @@ public class SignupActivityModel {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if(task.isSuccessful()){
                                             //FirebaseUser user = mAuth.getCurrentUser();
-                                            presenter.displayResult(false);
+                                            presenter.displayResult(false, role);
                                         }
                                         else{
                                             presenter.authError();
@@ -61,7 +65,7 @@ public class SignupActivityModel {
 
                                 User new_user = new User(email, password, username, role);
                                 user_ref.child(username).setValue(new_user);
-                                presenter.displayResult(snapshot.exists());
+                                presenter.displayResult(snapshot.exists(), role);
 
                             }
                         }
