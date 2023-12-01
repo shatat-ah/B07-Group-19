@@ -13,8 +13,8 @@
     // B07 Project Colours
     <color name="background">#88A0B4</color>
     <color name="accent_light">#B9CFE3</color>
-    <color name="accent_dark">#243140</color>
-    <color name="accent_grey">#6F7275</color>
+    <color name="accent_dark">#1A385A</color>
+    <color name="accent_grey">#636568</color>
     <color name="font_black">#2B2B2B</color>
     <color name="font_white">#FFFFFF</color>
 </resources>
