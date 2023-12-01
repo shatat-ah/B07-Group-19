@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".StudentHomeActivity">
 
     <View
@@ -149,7 +150,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Post Requirements"
+                    android:text="Post    Requirements"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:textStyle="bold" />
@@ -181,7 +182,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log out?"
-        android:textColor="@color/purple_500"
+        android:textColor="@color/accent_dark"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"

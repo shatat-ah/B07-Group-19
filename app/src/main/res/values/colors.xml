@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    // Default Colours
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +9,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    // B07 Project Colours
+
+    <color name="background">#88A0B4</color>
+    <color name="accent_light">#B9CFE3</color>
+    <color name="accent_dark">#243140</color>
+    <color name="accent_grey">#6F7275</color>
+    <color name="font_black">#2B2B2B</color>
+    <color name="font_white">#FFFFFF</color>
 </resources>
