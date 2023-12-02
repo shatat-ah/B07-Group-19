@@ -26,4 +26,8 @@ public class SignupActivityPresenter {
             view.user_created();
         }
     }
+
+    public void authError() {
+        view.authError();
+    }
 }

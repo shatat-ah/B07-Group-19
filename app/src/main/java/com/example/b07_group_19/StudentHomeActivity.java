@@ -12,8 +12,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-public class StudentHomeActivity extends AppCompatActivity implements  HomeFunction{
+import com.google.firebase.auth.FirebaseAuth;
 
+public class StudentHomeActivity extends AppCompatActivity implements  HomeFunction{
     private CardView post_card, even_card, compl_card, announce_card;
     private TextView logOut;
     @Override
@@ -59,6 +60,7 @@ public class StudentHomeActivity extends AppCompatActivity implements  HomeFunct
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
                 redirectLogin(StudentHomeActivity.this);
             }
         });

@@ -13,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -21,7 +23,11 @@ public class SignupActivityView extends AppCompatActivity implements Authenticat
     private Spinner spinner;
     private TextView back_to_login;
     private Button btn_signup;
-    public EditText signupemail, signuppassword,signupusername;
+    private EditText signupemail, signuppassword,signupusername;
+
+    public FirebaseAuth mAuth;
+    public FirebaseAuth.AuthStateListener mAuthListener;
+
 
     SignupActivityPresenter presenter;
 
@@ -103,4 +109,15 @@ public class SignupActivityView extends AppCompatActivity implements Authenticat
     public void uniqueUsername() {
         Toast.makeText(SignupActivityView.this, "Enter unique username", Toast.LENGTH_SHORT).show();
     }
+
+    public void authError() {
+        Toast.makeText(SignupActivityView.this,"Authentication Error", Toast.LENGTH_SHORT).show();
+    }
+
+
+    /*public void getUserRole(String email){
+        presenter.getUserRole(email);
+    }*/
+
+
 }
