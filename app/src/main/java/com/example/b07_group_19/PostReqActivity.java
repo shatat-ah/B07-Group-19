@@ -23,12 +23,12 @@ public class PostReqActivity extends Activity {
 
         if (admission == true){
             if (a48>73 && avg>70 && ((a22>60 && a37>60) || (a67>60 && a37>60) || (a22>60 && a67>60))){
-                return "You made it in!\n";
+                return "Congratulations!, you made it in!\n";
             }
         }
         else{
             if (a67>80 && a31>80){
-                return "You made it in!\n";
+                return "Since your not in stream for CS, admissions are competitive.\n However, You have a good chance at making it in!\n";
             }
         }
 
