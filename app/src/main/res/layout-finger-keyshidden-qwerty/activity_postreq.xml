@@ -174,7 +174,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
         android:backgroundTint="@color/accent_dark"
-        android:text="Result"
+        android:text="Submit"
         android:textColor="@color/accent_light"
         android:textSize="20sp"
         app:cornerRadius="30dp"
