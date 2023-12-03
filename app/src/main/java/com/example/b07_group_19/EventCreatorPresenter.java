@@ -13,6 +13,9 @@ public class EventCreatorPresenter {
         view.eventFound();
     }
 
+    public String getUserName() {
+        return model.getUserName();
+    }
     public void createNewEvent(String title, String description, String creator, String department, int maxParticipants, int day, int month, int year, int hour, int minute) {
         model.addDbEvent(this, title, description, creator, department, maxParticipants, day, month, year, hour, minute);
     }
