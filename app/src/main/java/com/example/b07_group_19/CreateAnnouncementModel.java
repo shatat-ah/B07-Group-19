@@ -11,6 +11,6 @@ public class CreateAnnouncementModel {
     }
 
     void addAnnouncement(Announcement announcement){
-        dbr.push().setValue(announcement.getMessage());
+        dbr.push().setValue(announcement);
     }
 }
