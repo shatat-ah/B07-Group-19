@@ -15,10 +15,14 @@ public class EventDetailsPresenter {
         model.getEventInfo(this, title);
     }
 
-    public void updateEventInfo(Event event){
+    public void updateEventInfo(Event event) {
         view.currentEvent = event;
     }
 
+    public String getUserEmail() {
+        model.getUserEmail();
+    }
+    
     public void eventNotFound() {
         view.eventNotFound();
     }
