@@ -48,8 +48,7 @@ public class EventDetailsView extends AppCompatActivity{
         eventTime.setText(currentEvent.getTimeAsString());
         String eventSpaces = ((currentEvent.getMaxParticipants() - currentEvent.getCurrentParticipants()) + "/" + (currentEvent.getMaxParticipants()));
         eventRemainingSpaces.setText(eventSpaces);
-        SharedPreferences user = getSharedPreferences("email", MODE_PRIVATE);
-        String email = user.getString("email", "");
+        String email = presenter.getUserEmail();
         buttonActive = !(currentEvent.containsParticipant(email));
         registerButton.setBackgroundColor((buttonActive)?(Color.BLUE):(Color.GRAY));
 
