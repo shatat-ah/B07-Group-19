@@ -8,17 +8,16 @@
     android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/announcements_page_t"
+        android:id="@+id/announcements_page"
         android:layout_width="match_parent"
-
-
-        android:layout_height="182dp"
+        android:layout_height="match_parent"
         app:layout_anchorGravity="center"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
         <LinearLayout
+            android:id="@+id/announcements"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
 
             <TextView
