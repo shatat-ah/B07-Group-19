@@ -34,8 +34,8 @@ public class AdminHomeActivity extends AppCompatActivity implements HomeFunction
         complaints.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(this, );
-                //startActivity(intent);
+                Intent intent = new Intent(AdminHomeActivity.this, AdminComplaintView.class);
+                startActivity(intent);
             }
         });
         new_announcement = findViewById(R.id.create_announcement_card);
