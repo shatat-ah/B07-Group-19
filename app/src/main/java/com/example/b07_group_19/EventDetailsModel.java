@@ -57,4 +57,8 @@ public class EventDetailsModel {
             }
         });
     }
+    public String getUserEmail(){
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        return user.getEmail();
+    }
 }
