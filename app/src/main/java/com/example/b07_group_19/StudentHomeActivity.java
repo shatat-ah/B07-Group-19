@@ -1,16 +1,13 @@
 package com.example.b07_group_19;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -52,8 +49,8 @@ public class StudentHomeActivity extends AppCompatActivity implements  HomeFunct
         announce_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(this, );
-                //startActivity(intent);
+                Intent intent = new Intent(StudentHomeActivity.this, AnnouncementsActivity.class);
+                startActivity(intent);
             }
         });
 
