@@ -49,4 +49,8 @@ public class EventCreatorModel {
             }
         });
     }
+    public String getUserName() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        return user.getUsername();
+    }
 }
