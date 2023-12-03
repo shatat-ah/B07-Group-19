@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".StudentFeedback"
+    tools:context=".StudentFeedbackActivity"
     android:orientation="vertical"
     android:background="@color/background">
 
@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:id="@+id/radio_group"
         android:layout_marginLeft="50dp"
         android:layout_marginBottom="10dp"
 
@@ -37,6 +38,7 @@
             android:button="@android:color/transparent"
             android:background="@drawable/radio_selector"
             android:elevation="4dp"
+            android:id="@+id/r1"
             android:textAlignment="center"
             android:layout_margin="8dp" />
         <RadioButton
@@ -45,6 +47,7 @@
             android:text="2"
             android:textSize="20sp"
             android:padding="8dp"
+            android:id="@+id/r2"
             android:textAlignment="center"
             android:button="@android:color/transparent"
             android:background="@drawable/radio_selector"
@@ -56,6 +59,7 @@
             android:text="3"
             android:textSize="20sp"
             android:padding="8dp"
+            android:id="@+id/r3"
             android:button="@android:color/transparent"
             android:background="@drawable/radio_selector"
             android:elevation="4dp"
@@ -65,6 +69,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="4"
+            android:id="@+id/r4"
             android:textSize="20sp"
             android:button="@android:color/transparent"
             android:background="@drawable/radio_selector"
@@ -77,6 +82,7 @@
             android:layout_height="wrap_content"
             android:text="5"
             android:textSize="20sp"
+            android:id="@+id/r5"
             android:button="@android:color/transparent"
             android:background="@drawable/radio_selector"
             android:elevation="4dp"
@@ -99,19 +105,22 @@
     <EditText
         android:id="@+id/review_summary"
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:padding="10dp"
-        android:background="@color/white"
+        android:layout_height="354dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginBottom="20dp"
+        android:background="@color/white"
+        android:isScrollContainer="true"
         android:maxLength="400"
-        />
+        android:padding="10dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Submit"
+        android:backgroundTint="@color/accent_dark"
+        android:textSize="25sp"
+        android:id="@+id/submit_form"
         android:background="@color/background"
         android:layout_gravity="center_horizontal"
         />

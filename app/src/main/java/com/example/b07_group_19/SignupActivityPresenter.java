@@ -16,7 +16,7 @@ public class SignupActivityPresenter implements PresenterInterface{
     }
     @Override
     public void displayResult(boolean exist, String role){
-        if(exist){
+        if(exist==true){
             view.accountFound(role);
         }
         else{

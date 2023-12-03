@@ -55,6 +55,8 @@ public class SignupActivityModel {
                                     public void onComplete(@NonNull Task<AuthResult> task) {
                                         if(task.isSuccessful()){
                                             //FirebaseUser user = mAuth.getCurrentUser();
+                                            User new_user = new User(email, password, username, role);
+                                            user_ref.child(username).setValue(new_user);
                                             presenter.displayResult(false, role);
                                         }
                                         else{
@@ -62,11 +64,6 @@ public class SignupActivityModel {
                                         }
                                     }
                                 });
-
-                                User new_user = new User(email, password, username, role);
-                                user_ref.child(username).setValue(new_user);
-                                presenter.displayResult(snapshot.exists(), role);
-
                             }
                         }
                         @Override

@@ -4,7 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -24,6 +28,7 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.lang.reflect.Array;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -36,7 +41,6 @@ public class AttendedEventsActivity extends AppCompatActivity {
     private ArrayList<FeedbackScrollObject> eventList = new ArrayList<>();
 
     //UNDO
-    private ArrayList<String> userEmails = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,33 +52,33 @@ public class AttendedEventsActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         LinearLayout parentlayout = findViewById(R.id.layout1);
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null){
-             //String user_email = user.getEmail();
-             String password = "bob123";
-            //Query query = event_ref.orderByChild("rvspList").equalTo(user_email);
-            DatabaseReference user_ref = db.getReference().child("users");
+        /*if (user != null){
+            String user_email = user.getEmail();
+            Query query = event_ref.orderByChild("rvspList").equalTo(user_email);
             //Query query2 = user_ref.orderByChild("password").equalTo(password);
 
-            user_ref.addValueEventListener(new ValueEventListener() {
+            event_ref.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.exists()){
-                        for(DataSnapshot userSnapshot: snapshot.getChildren()){
-                            String password1 = userSnapshot.child("password").getValue(String.class);
-                            if (password1.equals(password)){
-                                String email = userSnapshot.child("email").getValue(String.class);
-                                userEmails.add(email);
-                            }
-                            //FeedbackScrollObject obj = new FeedbackScrollObject(password, email);
-                            //eventList.add(obj);
+                        for(DataSnapshot eventSnapshot: snapshot.getChildren()){
+                            LocalDateTime eventDate = eventSnapshot.child("LocalDateTime").getValue(new GenericTypeIndicator<LocalDateTime>() {});
+                            String time = getTimeAsString(eventDate);
+                            String eventName = eventSnapshot.child("title").getValue(String.class);
+                            FeedbackScrollObject obj = new FeedbackScrollObject(eventName, time);
+                            eventList.add(obj);
                         }
                         //add under here
-                        for(String email:userEmails){
-                            populateScrollView(email, parentlayout);
+                        LocalDateTime timeNow = LocalDateTime.now();
+                        String currentTime = getTimeAsString(timeNow);
+                        for(FeedbackScrollObject obj:eventList){
+                            if (isLaterDate(obj.time,currentTime)){
+                                populateScrollView(obj.event_name,parentlayout,user_email);
+                            }
                         }
                     }
                     else{
-                        Toast.makeText(AttendedEventsActivity.this,"Currently no users",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(AttendedEventsActivity.this,"User has no attended events",Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -84,59 +88,31 @@ public class AttendedEventsActivity extends AppCompatActivity {
 
                 }
             });
-
-            //UNDO
-            /*query.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()){
-                        for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
-                            // Access the event data here
-                            String eventName = eventSnapshot.getKey();
-                            LocalDateTime eventDate = eventSnapshot.child("LocalDateTime").getValue(new GenericTypeIndicator<LocalDateTime>() {});
-                            String time = getTimeAsString(eventDate);
-                            FeedbackScrollObject obj = new FeedbackScrollObject(eventName, time);
-                            eventList.add(obj);
-                        }
-                    }
-                }
-                @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-
-                }
-            });*/
-
-            //Now, I should have an arrayList of object containing the title and date of events who the current user is rvsp for
-            //I need to now check that arrayList for any events that have passed, as that means they are "attended"
-            //int len = userEmails.size();
-            //String size = Integer.toString(len);
-            //Toast.makeText(AttendedEventsActivity.this,"The useremail List has lenght" + size,Toast.LENGTH_SHORT).show();
-            //for (FeedbackScrollObject obj: eventList){
-            //    populateScrollView(obj.event_name,obj.time,parentlayout);
-            //}
-            //UNDO
-            /*LocalDateTime currentTime = LocalDateTime.now();
-            String currentTimeString = getTimeAsString(currentTime);
-            for (FeedbackScrollObject obj: eventList){
-                if(isLaterDate(obj.time,currentTimeString)){
-                    //Now call add to scroll view function
-                    populateScrollView(obj.event_name, obj.time, parentlayout);
-                }
-            }*/
         }
         else{
             //go to login?
             Toast.makeText(AttendedEventsActivity.this,"no user found",Toast.LENGTH_SHORT).show();
-        }
+            openLoginActivity();
+        }*/
         //I want an array of simple object which I will use to populate the scroll View
-
-
-
-
+        String email = "dandan@gmail.com";
+        String[] Array = new String[]{"c","EventA","EventV","EventB","EventB","EventD","EventN","EventX","c","c","c","c","c","c","c","c",
+                "c","c","c","c","c","c","c","c","c"};
+        int a = Array.length;
+        for (int i=0;i<a;i++){
+            populateScrollView(Array[i],parentlayout,email);
+        }
     }
 
+    private void openLoginActivity() {
+        Intent intent = new Intent(AttendedEventsActivity.this,LoginActivityView.class);
+        startActivity(intent);
+    }
+    /////////////////////////////////////////////////////////////////////////////////////
+
+    /////////////////////////////////////////////////////////////////////////////////////////
     //Add the database events to the schroll view
-    public void populateScrollView(String eventName, LinearLayout L){
+    public void populateScrollView(String eventName, LinearLayout L, String email){
         //create new linear layout
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
@@ -163,7 +139,7 @@ public class AttendedEventsActivity extends AppCompatActivity {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 200
         );
-        p.setMargins(5,5,5,5);
+        p.setMargins(5,8,5,8);
         cardView.setLayoutParams(p);
         cardView.setBackgroundColor(Color.rgb(51,81,88));
         cardView.addView(titleview);
@@ -173,11 +149,19 @@ public class AttendedEventsActivity extends AppCompatActivity {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                openFeedbackForm(eventName,email);
             }
         });
 
         L.addView(cardView);
+    }
+
+    private void openFeedbackForm(String name, String email) {
+        Intent intent = new Intent(AttendedEventsActivity.this, StudentFeedbackActivity.class);
+        intent.putExtra("NAME",name);
+        intent.putExtra("EMAIL",email);
+        startActivity(intent);
+
     }
     //Listen for any update to the database event structure, to update scrowwView
 
