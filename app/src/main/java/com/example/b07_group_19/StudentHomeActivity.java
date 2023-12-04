@@ -52,8 +52,7 @@ public class StudentHomeActivity extends AppCompatActivity implements  HomeFunct
         announce_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StudentHomeActivity.this, TEST.class);
-                startActivity(intent);
+
             }
         });
 
