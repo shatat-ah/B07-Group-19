@@ -19,21 +19,6 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class EventUnitTest {
 
-    @Mock
-    MainActivityModel model;
-
-    @Mock
-    MainActivityView view;
-
-    @Mock
-    EditText editText;
-
-    @Mock
-    Editable edit;
-
-    @Mock
-    View baseView;
-
     @Test
     public void checkInvalidCreateTime(){
         Event event = new Event("EventName", "Description (10 characters)", "admin", "CS", 10, 1, 1, 2023, 12, 30);
