@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:fillViewport="true"
     android:orientation="vertical"
     android:padding="16dp">
@@ -10,7 +12,8 @@
         android:id="@+id/complaintsAdminBackBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Back to Main" />
+        android:backgroundTint="@color/accent_dark"
+        android:text="@string/back_to_main" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -19,20 +22,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center">
+            android:gravity="center"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/complaintsListText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Complaints List"
+                android:background="@color/accent_dark"
+                android:padding="8sp"
+                android:text="@string/complaints_list"
+                android:textColor="@color/font_white"
                 android:textSize="24sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:background="@color/accent_light" />
 
         </LinearLayout>
     </ScrollView>

@@ -3,14 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/background">
 
     <TextView
         android:id="@+id/complaintTextview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
-        android:text="Submit a Complaint"
+        android:background="@color/accent_dark"
+        android:paddingLeft="16sp"
+        android:paddingTop="8sp"
+        android:paddingRight="16sp"
+        android:paddingBottom="8sp"
+        android:text="@string/submit_a_complaint"
+        android:textColor="@color/font_white"
+        android:textColorHighlight="@color/accent_dark"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -26,12 +34,15 @@
         android:layout_marginEnd="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/complaintTextview">
+        app:layout_constraintTop_toBottomOf="@+id/complaintTextview"
+        android:textColorHint="@color/font_black">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Complaint title" />
+            android:hint="@string/enter_title"
+            android:textColor="@color/font_black"
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -48,7 +59,9 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="322dp"
-            android:hint="Enter your complaint details here" />
+            android:hint="@string/enter_description"
+            android:textColor="@color/font_black"
+            android:textColorHint="@color/font_black"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -57,7 +70,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
-        android:text="Submit"
+        android:backgroundTint="@color/accent_dark"
+        android:text="@string/submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputDescription" />
 
@@ -67,7 +81,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Back to Main"
+        android:backgroundTint="@color/accent_dark"
+        android:text="@string/back_to_main"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

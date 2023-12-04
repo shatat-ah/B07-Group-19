@@ -2,6 +2,7 @@ package com.example.b07_group_19;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,5 +37,9 @@ public class AdminComplaintView extends AppCompatActivity {
 
     public void displayComplaints(List<StudentComplaint> complaints) {
         adapter.setComplaints(complaints);
+    }
+
+    public void showErrorToast() {
+        Toast.makeText(this, "Error fetching complaints; please try again", Toast.LENGTH_SHORT).show();
     }
 }

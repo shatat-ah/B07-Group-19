@@ -36,7 +36,7 @@ public class AdminComplaintPresenter {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Handle an error fetching complaints
+                view.showErrorToast();
             }
         });
     }

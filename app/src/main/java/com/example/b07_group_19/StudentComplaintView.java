@@ -2,7 +2,6 @@ package com.example.b07_group_19;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.content.Intent;
 import android.widget.Button;
 import android.view.View;
 import android.widget.Toast;
