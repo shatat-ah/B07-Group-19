@@ -1,7 +1,9 @@
 package com.example.b07_group_19;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -11,10 +13,12 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class StudentFeedbackActivity extends AppCompatActivity {
 
@@ -49,12 +53,11 @@ public class StudentFeedbackActivity extends AppCompatActivity {
                 int rating = Integer.parseInt(checked);
                 String Summary = summaryText.getText().toString();
 
-
                 //check if student user did not fill any fields
                 if (TextUtils.isEmpty(Summary) && rating == -1) {
                     Toast.makeText(StudentFeedbackActivity.this, "Choose rating and/or enter summary", Toast.LENGTH_SHORT).show();
                 } else {
-                    Query query = eventRevRef.child("email").equalTo(student_email);
+                    Query query = eventRevRef.orderByChild("email").equalTo(student_email);
                     EventReviewObject revobj = new EventReviewObject(Summary, rating);
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
@@ -64,13 +67,11 @@ public class StudentFeedbackActivity extends AppCompatActivity {
                             } else {
                                 eventRevRef.child(student_email).setValue(revobj);
                                 Toast.makeText(StudentFeedbackActivity.this, "Feedback submission successful!", Toast.LENGTH_SHORT).show();
+                                backToAttendedEvents();
                             }
                         }
-
-
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
-
 
                         }
                     });
@@ -89,6 +90,12 @@ public class StudentFeedbackActivity extends AppCompatActivity {
             RButton = findViewById(checkedButton);
             return RButton.getText().toString();
         }
+    }
+
+    public void backToAttendedEvents(){
+        Intent intent = new Intent(StudentFeedbackActivity.this,AttendedEventsActivity.class);
+        startActivity(intent);
+        finish();
     }
 
 
