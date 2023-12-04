@@ -27,8 +27,8 @@ public class StudentHomeActivity extends AppCompatActivity implements  HomeFunct
         post_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(this, );
-                //startActivity(intent);
+                Intent intent = new Intent(StudentHomeActivity.this, PostReqActivity.class);
+                startActivity(intent);
             }
         });
 

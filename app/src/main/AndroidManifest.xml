@@ -30,6 +30,9 @@
             android:name=".SignupActivityView"
             android:exported="false" />
         <activity
+            android:name=".PostReqActivity"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivityView"
             android:exported="true">
             <intent-filter>
