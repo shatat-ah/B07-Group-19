@@ -26,8 +26,8 @@ public class AdminHomeActivity extends AppCompatActivity implements HomeFunction
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(this, );
-                //startActivity(intent);
+                Intent intent = new Intent(this, EventCreatorView.class);
+                startActivity(intent);
             }
         });
         complaints = findViewById(R.id.complaint_card);
