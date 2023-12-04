@@ -107,5 +107,4 @@ public class LoginActivityView extends AppCompatActivity implements Authenticate
     public void authError() {
         Toast.makeText(LoginActivityView.this,"Authentication Error", Toast.LENGTH_SHORT).show();
     }
-
 }

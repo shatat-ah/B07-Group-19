@@ -112,14 +112,9 @@ public class SignupActivityView extends AppCompatActivity implements Authenticat
     public void authError() {
         Toast.makeText(SignupActivityView.this,"Authentication Error. Invalid Email", Toast.LENGTH_SHORT).show();
     }
+
     public void passwordLength(){
         Toast.makeText(SignupActivityView.this,"Password must be 6 - 30 characters",Toast.LENGTH_SHORT).show();
     }
-
-
-    /*public void getUserRole(String email){
-        presenter.getUserRole(email);
-    }*/
-
 
 }
