@@ -22,20 +22,21 @@ public class EventUnitTest {
     @Test
     public void checkInvalidCreateTime(){
         Event event = new Event("EventName", "Description (10 characters)", "admin", "CS", 10, 1, 1, 2023, 12, 30);
-        Assertion.AssertThrows(DateTimeException);
+        Assertions.AssertThrows(DateTimeException);
     }
 
     @Test
     public void checkInvalidSetTime(){
         Event event = new Event("EventName", "Description (10 characters)", "admin", "CS", 10, 1, 1, 2023, 12, 30);
-        AssertFalse(setTime());
+        AssertTrue(event.setTime(2023, 20, 1, 12, 30) == 0);
     }
 
     @Test
     public void checkGetTime(){
         Event event = new Event("EventName", "Description (10 characters)", "admin", "CS", 10, 1, 1, 2023, 12, 30);
-        String time = event.getTimeAsString();
-        assertTrue(time == "");
+        String time = event.getTime();
+        LocalDateTime newTime = LocalDateTime.of(2023, 1, 1, 12, 30);
+        assertTrue(time.equals(newTime));
     }
 
     @Test
