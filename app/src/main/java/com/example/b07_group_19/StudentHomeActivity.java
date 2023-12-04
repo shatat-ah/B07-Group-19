@@ -60,8 +60,8 @@ public class StudentHomeActivity extends AppCompatActivity implements  HomeFunct
         feedback_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(StudentHomeActivity.this, AttendedEventsActivity.class);
-                startActivity(intent);
+                /*Intent intent = new Intent(StudentHomeActivity.this, AttendedEventsActivity.class);
+                startActivity(intent);*/
             }
         });
 
