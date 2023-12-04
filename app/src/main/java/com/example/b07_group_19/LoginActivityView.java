@@ -50,13 +50,7 @@ public class LoginActivityView extends AppCompatActivity implements Authenticate
                         role = "Student";
                         break;
                 }
-
-                if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
-                    missingField();
-                }
-                else{
-                    existing_user(username, role, password);
-                }
+                existing_user(username, role, password);
             }
         });
         back_to_signup.setOnClickListener(new View.OnClickListener() {
@@ -103,5 +97,8 @@ public class LoginActivityView extends AppCompatActivity implements Authenticate
         Intent intent = new Intent(LoginActivityView.this, AdminHomeActivity.class);
         startActivity(intent);
     }
-
+    @Override
+    public void authError() {
+        Toast.makeText(LoginActivityView.this,"Authentication Error", Toast.LENGTH_SHORT).show();
+    }
 }

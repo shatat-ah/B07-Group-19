@@ -46,11 +46,10 @@ public class LoginActivityModel {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if(task.isSuccessful()) {
-                                    FirebaseUser user = mAuth.getCurrentUser();
                                     presenter.displayResult(true, role);
                                 }
                                 else{
-                                    presenter.displayResult(false,role);
+                                    presenter.view.authError();
                                 }
                             }
                         });

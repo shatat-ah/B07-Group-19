@@ -11,7 +11,17 @@
     <View
         android:id="@+id/home_page_background"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="170dp"
+        android:backgroundTint="@color/accent_light"
+        android:background="@drawable/homepage_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/home_page_background2"
+        android:layout_width="413dp"
+        android:layout_height="157dp"
         android:background="@drawable/homepage_view"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,8 +29,8 @@
 
     <GridLayout
         android:id="@+id/gridLayout2"
-        android:layout_width="378dp"
-        android:layout_height="364dp"
+        android:layout_width="338dp"
+        android:layout_height="332dp"
         android:layout_below="@id/home_page_background"
         android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
@@ -30,13 +40,13 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.39">
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        app:layout_constraintVertical_bias="0.06999999">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/create_announcement_card"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_row="0"
             android:layout_rowWeight="1"
             android:layout_column="0"
@@ -51,6 +61,10 @@
                 android:gravity="center"
                 android:orientation="vertical">
                 <!-- ADD IMAGE-->
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/anouncement"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -67,8 +81,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/schedule_card"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_row="0"
             android:layout_rowWeight="1"
             android:layout_column="1"
@@ -83,6 +97,10 @@
                 android:gravity="center"
                 android:orientation="vertical">
                 <!-- ADD IMAGE-->
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/events"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -98,8 +116,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/complaint_card"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_row="1"
             android:layout_rowWeight="1"
             android:layout_column="1"
@@ -114,15 +132,19 @@
                 android:gravity="center"
                 android:orientation="vertical">
                 <!-- ADD IMAGE-->
-
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/complaint" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Student     Complaints"
+                    android:text="Complaints"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
 
             </LinearLayout>
 
@@ -130,8 +152,8 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/feedback_card"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:layout_row="1"
             android:layout_rowWeight="1"
             android:layout_column="0"
@@ -146,6 +168,10 @@
                 android:gravity="center"
                 android:orientation="vertical">
                 <!-- ADD IMAGE-->
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/feedback"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -168,9 +194,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Dashboard"
+        android:text="DASHBOARD"
         android:textColor="@color/white"
-        android:textSize="40sp"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/home_page_background"
         app:layout_constraintEnd_toEndOf="parent"
@@ -184,13 +210,12 @@
         android:layout_height="wrap_content"
         android:text="Log out?"
         android:textColor="@color/accent_dark"
-        android:textSize="20sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/home_page_background"
-        app:layout_constraintVertical_bias="0.75" />
+        app:layout_constraintTop_toBottomOf="@+id/gridLayout2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
