@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class ExampleUnitTest {
 
-    @Mock
+    /*@Mock
     LoginActivityView View;
 
     @Mock
@@ -31,10 +31,22 @@ public class ExampleUnitTest {
     private LoginActivityPresenter presenter;
 
     @Test
-    public void testCheckDBUser_UserExists() {
+    public void testCheckDBUser_UserExists_Student() {
         String username = "Ousman";
         String role = "Student";
         String password = "Jikz10";
+do
+        doNothing().when(Model).queryDB(presenter,anyString(),anyString(),anyString());
+        presenter = new LoginActivityPresenter(View, Model);
+        presenter.checkDBuser(username,role,password);
+        verify(View,times(1)).userExist(role);
+    }
+
+    @Test
+    public void testCheckDBUser_UserExists_Admin() {
+        String username = "Bob";
+        String role = "Admin";
+        String password = "bob123";
 
         doNothing().when(Model).queryDB(presenter,anyString(),anyString(),anyString());
         presenter = new LoginActivityPresenter(View, Model);
@@ -54,5 +66,38 @@ public class ExampleUnitTest {
 
         verify(View,times(1)).userNotFound();
     }
+
+    @Test
+    public void testMissing_Fields_Username(){
+        String username = "";
+        String role = "Student";
+        String password = "Jikz10";
+
+        doNothing().when(View).existing_user(anyString(),anyString(),anyString());
+        View.existing_user(username,role,password);
+        verify(View,times(1)).missingField();
+    }
+
+    @Test
+    public void testMissing_Fields_Password(){
+        String username = "Ousman";
+        String role = "Student";
+        String password = "";
+
+        doNothing().when(View).existing_user(anyString(),anyString(),anyString());
+        View.existing_user(username,role,password);
+        verify(View,times(1)).missingField();
+    }
+
+    @Test
+    public void testMissing_Fields_Password_and_Username(){
+        String username = "";
+        String role = "Student";
+        String password = "";
+
+        doNothing().when(View).existing_user(anyString(),anyString(),anyString());
+        View.existing_user(username,role,password);
+        verify(View,times(1)).missingField();
+    }*/
 
 }

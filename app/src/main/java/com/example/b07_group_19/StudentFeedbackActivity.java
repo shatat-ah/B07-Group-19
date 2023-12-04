@@ -26,7 +26,7 @@ public class StudentFeedbackActivity extends AppCompatActivity {
     private EditText summaryText;
     private  RadioGroup RG;
     private FirebaseDatabase db;
-    private DatabaseReference ref;
+    private DatabaseReference eventRevRef;
     private RadioButton RButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,39 +35,36 @@ public class StudentFeedbackActivity extends AppCompatActivity {
 
         String event_name = getIntent().getStringExtra("NAME");
         String student_email = getIntent().getStringExtra("EMAIL");
-        submit_btn = (Button)findViewById(R.id.submit_form);
+        submit_btn = findViewById(R.id.submit_form);
         RG = findViewById(R.id.radio_group);
         db = FirebaseDatabase.getInstance();
-        ref = db.getReference();
-        DatabaseReference eventRevRef = ref.child("eventFeedback");
+        DatabaseReference ref = db.getReference();
+        // Calling the child method to ensure that eventFeedback node exists 1st
+        eventRevRef = ref.child("eventFeedback").child(event_name);
         summaryText = findViewById(R.id.review_summary);
+
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String checked = getChecked(v);
                 int rating = Integer.parseInt(checked);
                 String Summary = summaryText.getText().toString();
-                //check if the form is empty
-                if (TextUtils.isEmpty(Summary) && rating == -1){
-                    Toast.makeText(StudentFeedbackActivity.this,"Choose rating and/or enter summary",Toast.LENGTH_SHORT).show();
-                }
-                else{
-                    DatabaseReference eventNameRef = eventRevRef.child(event_name);
-                    DatabaseReference studentRef = eventNameRef.child(student_email);
-                    studentRef.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                //check if student user did not fill any fields
+                if (TextUtils.isEmpty(Summary) && rating == -1) {
+                    Toast.makeText(StudentFeedbackActivity.this, "Choose rating and/or enter summary", Toast.LENGTH_SHORT).show();
+                } else {
+                    Query query = eventRevRef.child("email").equalTo(student_email);
+                    EventReviewObject revobj = new EventReviewObject(Summary, rating);
+                    query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if(snapshot.exists()){
-                                //student of this email already gave feedback
-                                Toast.makeText(StudentFeedbackActivity.this,"Submission already made for this event",Toast.LENGTH_SHORT).show();
+                            if (snapshot.exists()) {
+                                Toast.makeText(StudentFeedbackActivity.this, "User already submitted feedback for this event", Toast.LENGTH_SHORT).show();
+                            } else {
+                                eventRevRef.child(student_email).setValue(revobj);
+                                Toast.makeText(StudentFeedbackActivity.this, "Feedback submission successful!", Toast.LENGTH_SHORT).show();
                             }
-                            else{
-                                EventReviewObject revobj = new EventReviewObject(Summary,rating);
-                                studentRef.setValue(revobj);
-                                Toast.makeText(StudentFeedbackActivity.this,"Feedback Successful",Toast.LENGTH_SHORT).show();
-
-                            }
-
                         }
 
                         @Override
@@ -90,6 +87,7 @@ public class StudentFeedbackActivity extends AppCompatActivity {
             return RButton.getText().toString();
         }
     }
+
 
 
 }

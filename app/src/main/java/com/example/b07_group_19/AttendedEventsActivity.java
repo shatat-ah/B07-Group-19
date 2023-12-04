@@ -48,15 +48,16 @@ public class AttendedEventsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_attended_events);
 
         db = FirebaseDatabase.getInstance();
-        event_ref = db.getReference().child("events");
+        DatabaseReference ref = db.getReference();
+        event_ref = ref.child("events");
         mAuth = FirebaseAuth.getInstance();
         LinearLayout parentlayout = findViewById(R.id.layout1);
         FirebaseUser user = mAuth.getCurrentUser();
-        if (user != null){
+        /*if (user != null){
             String user_email = user.getEmail();
             Query query = event_ref.orderByChild("rvspList").equalTo(user_email);
 
-            event_ref.addValueEventListener(new ValueEventListener() {
+            query.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if(snapshot.exists()){
@@ -92,8 +93,12 @@ public class AttendedEventsActivity extends AppCompatActivity {
             //go to login?
             Toast.makeText(AttendedEventsActivity.this,"no user found",Toast.LENGTH_SHORT).show();
             openLoginActivity();
-        }
+        }*/
         //I want an array of simple object which I will use to populate the scroll View
+        String[] Array = new String[]{"c","event","event","event","event","event","event","event","event"};
+        for(int i=0;i<Array.length;i++){
+            populateScrollView(Array[i],parentlayout,"bob@gmail.com");
+        }
     }
 
     private void openLoginActivity() {

@@ -1,5 +1,7 @@
 package com.example.b07_group_19;
 
+import android.text.TextUtils;
+
 public class LoginActivityPresenter implements PresenterInterface{
 
     LoginActivityView view;
@@ -11,7 +13,12 @@ public class LoginActivityPresenter implements PresenterInterface{
 
 
     public void checkDBuser(String username, String role, String password) {
-        model.queryDB(this, username, role, password);
+        if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
+            view.missingField();
+        }
+        else{
+            model.queryDB(this, username, role, password);
+        }
     }
     @Override
     public void displayResult(boolean exists, String role) {
