@@ -41,10 +41,8 @@ public class Admin_Indiv_Feedback extends Activity {
         LinearLayout parentlayout = findViewById(R.id.layout);
         FirebaseUser user = mAuth.getCurrentUser();
 
-        String[] Array = new String[]{"c", "event", "event", "event", "event", "event", "event", "event", "event"};
-        for (int i = 0; i < Array.length; i++) {
-            populateScrollView(Array[i], parentlayout);
-        }
+        String name = "NAME";
+        populateScrollView(name, parentlayout);
     }
 
     public void populateScrollView(String eventName, LinearLayout L) {
@@ -63,33 +61,7 @@ public class Admin_Indiv_Feedback extends Activity {
         textLayoutParams.setMargins(1, 10, 1, 1);
         titleview.setLayoutParams(textLayoutParams);
         titleview.setGravity(Gravity.CENTER);
-        titleview.setTextColor(Color.WHITE);
-        //create text for the card
-        //Create card
-        CardView cardView = new CardView(this);
-        cardView.setCardElevation(10);
-        cardView.setRadius(16);
-        cardView.setPadding(20, 40, 20, 20);
-        ViewGroup.MarginLayoutParams p = new ViewGroup.MarginLayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                200
-        );
-        no_feed.setText(" ");
-        p.setMargins(5, 8, 5, 8);
-        cardView.setLayoutParams(p);
-        cardView.setBackgroundColor(Color.rgb(51, 81, 88));
-        cardView.addView(titleview);
-        cardView.setForegroundGravity(Gravity.CENTER);
-        //add card to the linearlayout
-        //layout.addView(cardView);
-        cardView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //Open a new .java file dor indiv event Admin_Feedback
-            }
-        });
+        titleview.setTextColor(Color.BLACK);
 
-
-        L.addView(cardView);
     }
 }
