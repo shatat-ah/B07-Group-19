@@ -35,18 +35,17 @@ public class PostReqActivity extends Activity {
         result_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                inta22 = Integer.parseInt(String.valueOf(texta22));
-                inta31 = Integer.parseInt(String.valueOf(texta31));
-                inta37 = Integer.parseInt(String.valueOf(texta37));
-                inta48 = Integer.parseInt(String.valueOf(texta48));
-                inta67 = Integer.parseInt(String.valueOf(texta67));
-
                 if(TextUtils.isEmpty(String.valueOf(texta22)) || TextUtils.isEmpty(String.valueOf(texta31)) ||
                         TextUtils.isEmpty(String.valueOf(texta37)) || TextUtils.isEmpty(String.valueOf(texta48)) ||
                         TextUtils.isEmpty(String.valueOf(texta67))) {
                     missingField();
                 }
                 else{
+                    inta22 = Integer.parseInt(String.valueOf(texta22));
+                    inta31 = Integer.parseInt(String.valueOf(texta31));
+                    inta37 = Integer.parseInt(String.valueOf(texta37));
+                    inta48 = Integer.parseInt(String.valueOf(texta48));
+                    inta67 = Integer.parseInt(String.valueOf(texta67));
                     checkReq(inta22, inta31, inta37, inta48, inta67, admission);
                 }
             }
