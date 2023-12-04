@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -24,19 +25,22 @@ public class StudentFeedbackActivity extends AppCompatActivity {
     private Button submit_btn;
     private EditText summaryText;
     private  RadioGroup RG;
+    private FirebaseDatabase db;
+    private DatabaseReference ref;
     private RadioButton RButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_feedback);
 
-        submit_btn = (Button)findViewById(R.id.submit_form);
-        RG = findViewById(R.id.radio_group);
-        DatabaseReference eventRevRef = FirebaseDatabase.getInstance().getReference().child("event-feedback");
-        summaryText = findViewById(R.id.review_summary);
         String event_name = getIntent().getStringExtra("NAME");
         String student_email = getIntent().getStringExtra("EMAIL");
-        Toast.makeText(StudentFeedbackActivity.this,"The student email is " + student_email + " and the event name is " + event_name,Toast.LENGTH_SHORT).show();
+        submit_btn = (Button)findViewById(R.id.submit_form);
+        RG = findViewById(R.id.radio_group);
+        db = FirebaseDatabase.getInstance();
+        ref = db.getReference();
+        DatabaseReference eventRevRef = ref.child("eventFeedback");
+        summaryText = findViewById(R.id.review_summary);
         submit_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,19 +52,22 @@ public class StudentFeedbackActivity extends AppCompatActivity {
                     Toast.makeText(StudentFeedbackActivity.this,"Choose rating and/or enter summary",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    Query query = eventRevRef.child(event_name).orderByChild("email").equalTo(student_email);
-                    EventReviewObject revobj = new EventReviewObject(Summary,rating,student_email);
-                    query.addListenerForSingleValueEvent(new ValueEventListener() {
+                    DatabaseReference eventNameRef = eventRevRef.child(event_name);
+                    DatabaseReference studentRef = eventNameRef.child(student_email);
+                    studentRef.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.exists()){
-                                //The student has already made a previous review for this event
+                                //student of this email already gave feedback
                                 Toast.makeText(StudentFeedbackActivity.this,"Submission already made for this event",Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                //The student has never made a review for this event
-                                eventRevRef.child(event_name).child(student_email).setValue(revobj);
+                                EventReviewObject revobj = new EventReviewObject(Summary,rating);
+                                studentRef.setValue(revobj);
+                                Toast.makeText(StudentFeedbackActivity.this,"Feedback Successful",Toast.LENGTH_SHORT).show();
+
                             }
+
                         }
 
                         @Override

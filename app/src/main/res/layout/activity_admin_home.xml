@@ -61,6 +61,10 @@
                 android:gravity="center"
                 android:orientation="vertical">
                 <!-- ADD IMAGE-->
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/anouncement"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -93,6 +97,10 @@
                 android:gravity="center"
                 android:orientation="vertical">
                 <!-- ADD IMAGE-->
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/events"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -124,15 +132,19 @@
                 android:gravity="center"
                 android:orientation="vertical">
                 <!-- ADD IMAGE-->
-
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/complaint" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:text="Student     Complaints"
+                    android:text="Complaints"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:textStyle="bold" />
+
 
             </LinearLayout>
 
@@ -156,6 +168,10 @@
                 android:gravity="center"
                 android:orientation="vertical">
                 <!-- ADD IMAGE-->
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:src="@drawable/feedback"/>
 
                 <TextView
                     android:layout_width="wrap_content"

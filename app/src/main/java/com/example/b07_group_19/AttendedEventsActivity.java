@@ -52,10 +52,9 @@ public class AttendedEventsActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         LinearLayout parentlayout = findViewById(R.id.layout1);
         FirebaseUser user = mAuth.getCurrentUser();
-        /*if (user != null){
+        if (user != null){
             String user_email = user.getEmail();
             Query query = event_ref.orderByChild("rvspList").equalTo(user_email);
-            //Query query2 = user_ref.orderByChild("password").equalTo(password);
 
             event_ref.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -93,15 +92,8 @@ public class AttendedEventsActivity extends AppCompatActivity {
             //go to login?
             Toast.makeText(AttendedEventsActivity.this,"no user found",Toast.LENGTH_SHORT).show();
             openLoginActivity();
-        }*/
-        //I want an array of simple object which I will use to populate the scroll View
-        String email = "dandan@gmail.com";
-        String[] Array = new String[]{"c","EventA","EventV","EventB","EventB","EventD","EventN","EventX","c","c","c","c","c","c","c","c",
-                "c","c","c","c","c","c","c","c","c"};
-        int a = Array.length;
-        for (int i=0;i<a;i++){
-            populateScrollView(Array[i],parentlayout,email);
         }
+        //I want an array of simple object which I will use to populate the scroll View
     }
 
     private void openLoginActivity() {
