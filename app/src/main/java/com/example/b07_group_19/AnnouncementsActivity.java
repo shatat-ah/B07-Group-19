@@ -2,6 +2,8 @@ package com.example.b07_group_19;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,19 +16,22 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class AnnouncementsActivity extends AppCompatActivity {
+    private Button return_to_home;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.announcements_page);
 
-        DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("announcements");
+        return_to_home = findViewById(R.id.return_home);
+        return_to_home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
-        List<String> titles = new ArrayList<>();
-        List<String> messages = new ArrayList<>();
+        DatabaseReference dbr = FirebaseDatabase.getInstance().getReference("announcements");
         dbr.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -36,8 +41,6 @@ public class AnnouncementsActivity extends AppCompatActivity {
                     String message = announcementSnapshot.child("message").getValue(String.class);
 
                     // Do something with the data (e.g., display it in a TextView)
-                    titles.add(title);
-                    messages.add(message);
                     displayAnnouncement(title, true);
                     displayAnnouncement(message, false);
                 }

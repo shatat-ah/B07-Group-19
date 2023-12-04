@@ -5,12 +5,15 @@
 
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/accent_light"
+    android:paddingBottom="50dp">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/announcements_page"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/accent_light"
         app:layout_anchorGravity="center"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
 
@@ -20,13 +23,14 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="15dp"
                 android:text="Welcome"
                 android:textAllCaps="true"
-                android:textColor="@color/font_black"
+                android:textColor="@color/font_white"
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
@@ -35,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:padding="15dp"
                 android:text="You can view your messages here."
-                android:textColor="@color/accent_dark"
+                android:textColor="@color/accent_grey"
                 android:textSize="24sp" />
 
             <View
@@ -43,10 +47,23 @@
                 android:layout_width="match_parent"
                 android:layout_height="3dp"
                 android:background="?android:attr/listDivider" />
+
+            <Button
+                android:id="@+id/return_home"
+                android:layout_width="match_parent"
+                android:layout_height="79dp"
+                android:layout_marginBottom="32dp"
+                android:backgroundTint="@color/accent_dark"
+                android:text="@string/return_to_homepage"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/announcements_page" />
+
+
         </LinearLayout>
 
 
     </androidx.core.widget.NestedScrollView>
-
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
