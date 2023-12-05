@@ -13,8 +13,8 @@ public class EventCreatorPresenter {
         view.eventFound();
     }
 
-    public String getUserName() {
-        return model.getUserName();
+    public String getEmail() {
+        return model.getEmail();
     }
 
     public void createNewEvent(String title, String description, String creator, String department, int maxParticipants, int day, int month, int year, int hour, int minute) {
