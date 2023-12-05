@@ -13,7 +13,7 @@ public class LoginActivityPresenter implements PresenterInterface{
 
 
     public void checkDBuser(String username, String role, String password) {
-        if(TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
+        if(username.equals("") || password.equals("")){
             view.missingField();
         }
         else{
