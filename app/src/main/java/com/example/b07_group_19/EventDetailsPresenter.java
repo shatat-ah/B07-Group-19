@@ -20,7 +20,7 @@ public class EventDetailsPresenter {
     }
 
     public String getUserEmail() {
-        model.getUserEmail();
+        return model.getUserEmail();
     }
     
     public void eventNotFound() {
