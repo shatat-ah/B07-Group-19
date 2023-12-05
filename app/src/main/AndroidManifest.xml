@@ -22,6 +22,9 @@
             android:name=".EventCreatorView"
             android:exported="false" />
         <activity
+            android:name=".SuccessfulAnnouncementActivity"
+            android:exported="false" />
+        <activity
             android:name=".CreateAnnouncementView"
             android:exported="false" />
         <activity
