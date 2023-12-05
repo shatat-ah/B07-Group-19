@@ -7,6 +7,14 @@ import java.util.ArrayList;
 
 public class Event {
 
+    private String title;
+    private String description;
+    private ArrayList<String> rsvpList;
+    private String department;
+    private int maxParticipants;
+    private int currentParticipants;
+    private LocalDateTime time;
+    private String creator;
     public Event(String title, String description, String creator, String department, int maxParticipants, int day, int month, int year, int hour, int minute){
         try{
             LocalDateTime newTime = LocalDateTime.of(year, month, day, hour, minute);
