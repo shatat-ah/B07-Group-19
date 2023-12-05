@@ -22,6 +22,8 @@ public class Event {
             //With good UX this should never need to run
         }
         this.title = title;
+        this.department = department;
+        this.maxParticipants = maxParticipants;
         this.description = description;
         this.creator = creator;
         this.rsvpList = new ArrayList<String>();
