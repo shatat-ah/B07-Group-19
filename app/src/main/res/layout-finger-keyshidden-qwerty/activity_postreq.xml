@@ -20,7 +20,7 @@
     <View
         android:id="@+id/req_page_bg_accent"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="120dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/homepage_view"
         android:backgroundTint="@color/accent_light"
@@ -31,7 +31,7 @@
     <View
         android:id="@+id/req_page_bg"
         android:layout_width="match_parent"
-        android:layout_height="110dp"
+        android:layout_height="120dp"
         android:background="@drawable/homepage_view"
         android:backgroundTint="@color/accent_dark"
         app:layout_constraintEnd_toEndOf="parent"
@@ -39,27 +39,30 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:id="@+id/logo"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+    <Button
+        android:id="@+id/backBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:background="@drawable/postreq"
         android:backgroundTint="@color/accent_light"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/back_to_main"
+        android:textColor="@color/font_black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Computer Science\nPOSt Requirements Check"
+        android:layout_marginTop="70dp"
+        android:text="POSt REQUIREMENTS CHECK"
         android:textAlignment="center"
-        android:textColor="@color/accent_light"
+        android:textColor="@color/font_white"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"></TextView>
 
@@ -67,7 +70,7 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="250dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

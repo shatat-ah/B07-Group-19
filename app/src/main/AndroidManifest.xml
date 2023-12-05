@@ -30,6 +30,11 @@
             android:name=".SignupActivityView"
             android:exported="false" />
         <activity
+            android:name=".PostReqActivity"
+            android:screenOrientation="portrait"
+            android:configChanges="orientation"
+            android:exported="false" />
+        <activity
             android:name=".LoginActivityView"
             android:exported="true">
             <intent-filter>
