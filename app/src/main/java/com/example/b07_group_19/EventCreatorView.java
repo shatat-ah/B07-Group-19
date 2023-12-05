@@ -66,7 +66,7 @@ public class EventCreatorView extends AppCompatActivity{
                 title = String.valueOf(eventTitle.getText());
                 description = String.valueOf(eventDescription.getText());
                 maxParticipants = Integer.parseInt(eventParticipants.getText().toString()); //There has to be a better way of doing this
-                creator = presenter.getUserName();
+                creator = presenter.getEmail();
                 day = eventDate.getDayOfMonth();
                 month = eventDate.getMonth();
                 year = eventDate.getYear();
