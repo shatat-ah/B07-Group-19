@@ -17,8 +17,7 @@ public class Event {
     private String creator;
     public Event(String title, String description, String creator, String department, int maxParticipants, int day, int month, int year, int hour, int minute){
         try{
-            LocalDateTime newTime = LocalDateTime.of(year, month, day, hour, minute);
-            this.time = newTime;
+            this.time = LocalDateTime.of(year, month, day, hour, minute);
         } catch (DateTimeException e) {
             //With good UX this should never need to run
         }
