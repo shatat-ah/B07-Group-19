@@ -33,8 +33,8 @@ public class StudentHomeActivity extends AppCompatActivity implements  HomeFunct
         even_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(this, );
-                //startActivity(intent);
+                Intent intent = new Intent(StudentHomeActivity.this, EventListView.class);
+                startActivity(intent);
             }
         });
         compl_card = findViewById(R.id.complaint_card);
