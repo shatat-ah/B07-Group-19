@@ -28,6 +28,11 @@
         <item>Student</item>
         <item>Administrator</item>
     </string-array>
+    <string-array name="departmentItems">
+        <item>CS</item>
+        <item>Math</item>
+        <item?Statistics</item?
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_create_announcement">CreateAnnouncement</string>
