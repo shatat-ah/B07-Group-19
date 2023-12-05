@@ -9,6 +9,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
@@ -22,7 +23,7 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class ExampleUnitTest {
 
-    /*@Mock
+    @Mock
     LoginActivityView View;
 
     @Mock
@@ -35,7 +36,7 @@ public class ExampleUnitTest {
         String username = "Ousman";
         String role = "Student";
         String password = "Jikz10";
-do
+
         doNothing().when(Model).queryDB(presenter,anyString(),anyString(),anyString());
         presenter = new LoginActivityPresenter(View, Model);
         presenter.checkDBuser(username,role,password);
@@ -90,14 +91,14 @@ do
     }
 
     @Test
-    public void testMissing_Fields_Password_and_Username(){
+    public void testMissing_Fields_Password_and_Username() {
         String username = "";
         String role = "Student";
         String password = "";
 
-        doNothing().when(View).existing_user(anyString(),anyString(),anyString());
-        View.existing_user(username,role,password);
-        verify(View,times(1)).missingField();
-    }*/
+        doNothing().when(View).existing_user(anyString(), anyString(), anyString());
+        View.existing_user(username, role, password);
+        verify(View, times(1)).missingField();
 
+    }
 }
