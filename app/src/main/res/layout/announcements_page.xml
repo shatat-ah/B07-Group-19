@@ -28,9 +28,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="15dp"
-                android:text="You can view your messages here."
-                android:textColor="@color/accent_grey"
-                android:textSize="24sp" />
+                android:text="ANNOUNCEMENTS"
+                android:textColor="@color/accent_dark"
+                android:textSize="24sp"
+                android:textStyle="bold" />
 
             <View
                 android:id="@+id/divider"

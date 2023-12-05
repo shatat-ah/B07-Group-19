@@ -27,8 +27,15 @@
         <activity
             android:name=".CreateAnnouncementView"
             android:exported="false"
-            android:label="Create Announcement"
+            android:label="Create Announcement"/>
+        <activity
+            android:name=".StudentComplaintView"
+            android:exported="false"
             android:theme="@style/Theme.B07Group19" />
+        <activity
+            android:name=".AdminComplaintView"
+            android:exported="false"
+            android:theme="@style/Theme.B07Group19"/>
         <activity
             android:name=".AdminHomeActivity"
             android:exported="false" />
@@ -37,6 +44,9 @@
             android:exported="false" />
         <activity
             android:name=".SignupActivityView"
+            android:exported="false" />
+        <activity
+            android:name=".PostReqActivity"
             android:exported="false" />
         <activity
             android:name=".LoginActivityView"

@@ -25,10 +25,6 @@ public class SignupActivityView extends AppCompatActivity implements Authenticat
     private Button btn_signup;
     private EditText signupemail, signuppassword,signupusername;
 
-    public FirebaseAuth mAuth;
-    public FirebaseAuth.AuthStateListener mAuthListener;
-
-
     SignupActivityPresenter presenter;
 
     @Override
@@ -74,6 +70,9 @@ public class SignupActivityView extends AppCompatActivity implements Authenticat
                 if(TextUtils.isEmpty(email) || TextUtils.isEmpty(username) || TextUtils.isEmpty(password)){
                     missingField();
                 }
+                else if(password.length()<6 || password.length()>30){
+                    passwordLength();
+                }
                 else{
                     create_user(email, username, password, role);
                 }
@@ -88,8 +87,8 @@ public class SignupActivityView extends AppCompatActivity implements Authenticat
 
     }
 
-    public void user_created(){
-        Toast.makeText(SignupActivityView.this, "Successfully Registered", Toast.LENGTH_SHORT).show();
+    public void user_created(String role){
+        Toast.makeText(SignupActivityView.this, "Successfully Registered a new " + role + " account!", Toast.LENGTH_SHORT).show();
         openLoginActivity();
     }
     public void openLoginActivity(){
@@ -102,22 +101,20 @@ public class SignupActivityView extends AppCompatActivity implements Authenticat
         Toast.makeText(SignupActivityView.this, "Enter missing field", Toast.LENGTH_SHORT).show();
     }
 
-    public void accountFound() {
-        Toast.makeText(SignupActivityView.this, "Email already exist", Toast.LENGTH_SHORT).show();
+    public void accountFound(String role) {
+        Toast.makeText(SignupActivityView.this, "Email already exist for " + role +" account", Toast.LENGTH_SHORT).show();
     }
 
     public void uniqueUsername() {
         Toast.makeText(SignupActivityView.this, "Enter unique username", Toast.LENGTH_SHORT).show();
     }
-
+    @Override
     public void authError() {
-        Toast.makeText(SignupActivityView.this,"Authentication Error", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SignupActivityView.this,"Authentication Error. Invalid Email", Toast.LENGTH_SHORT).show();
     }
 
-
-    /*public void getUserRole(String email){
-        presenter.getUserRole(email);
-    }*/
-
+    public void passwordLength(){
+        Toast.makeText(SignupActivityView.this,"Password must be 6 - 30 characters",Toast.LENGTH_SHORT).show();
+    }
 
 }

@@ -1,34 +1,80 @@
 package com.example.b07_group_19;
 
-public class PostReqActivity {
-    int a22 = 0, a31 = 0, a37 = 0, a48 = 0, a67 = 0; // Marks for each course
-    int admission = 0; // Are they in stream or not?
+import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
-    public void getReq(int a22, int a31, int a37, int a48, int a67, int admission){
+public class PostReqActivity extends Activity {
+    public EditText texta22, texta31, texta37, texta48, texta67;
+    int inta22,inta31,inta37,inta48,inta67;
+    private Button result_button;
 
+    private TextView textres;
+    private CheckBox admission; // Are they in stream or not?
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_postreq);
+
+        texta22 = findViewById(R.id.a22);
+        texta31 = findViewById(R.id.a31);
+        texta37 = findViewById(R.id.a37);
+        texta48 = findViewById(R.id.a48);
+        texta67 = findViewById(R.id.a67);
+        admission = (CheckBox)findViewById(R.id.admission_check);
+        result_button = (Button)findViewById(R.id.submit);
+
+        result_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(TextUtils.isEmpty(String.valueOf(texta22)) || TextUtils.isEmpty(String.valueOf(texta31)) ||
+                        TextUtils.isEmpty(String.valueOf(texta37)) || TextUtils.isEmpty(String.valueOf(texta48)) ||
+                        TextUtils.isEmpty(String.valueOf(texta67))) {
+                    missingField();
+                }
+                else{
+                    inta22 = Integer.parseInt(String.valueOf(texta22));
+                    inta31 = Integer.parseInt(String.valueOf(texta31));
+                    inta37 = Integer.parseInt(String.valueOf(texta37));
+                    inta48 = Integer.parseInt(String.valueOf(texta48));
+                    inta67 = Integer.parseInt(String.valueOf(texta67));
+                    checkReq(inta22, inta31, inta37, inta48, inta67, admission);
+                }
+            }
+        });
     }
 
-    public int computeAvg(int a22, int a31, int a37, int a48, int a67){
-        return (a22 + a31 + a37 + a48 + a67)/5;
-    }
+    public void checkReq(int a22, int a31, int a37, int a48, int a67, CheckBox admission){
 
-    public String checkReq(int a22, int a31, int a37, int a48, int a67, int admission){
+        int avg = (a22 + a31 + a37 + a48 + a67)/5;
+        textres = findViewById(R.id.result_text);
 
-        int avg = computeAvg(a22,a31,a37,a48,a67);
-
-        if (admission == 0){
-            if (a48>70 && avg>70){
-                return "You made it in!\n";
+        if (admission.isChecked()){
+            if (a48>73 && avg>70 && ((a22>60 && a37>60) || (a67>60 && a37>60) || (a22>60 && a67>60))){
+                textres.setText("Result Message: Congratulations! You made it in");
             }
         }
         else{
-            boolean a31firsttime = true, a67firsttime = true;
-            if (a67>70 && a31>70 && a31firsttime == true && a67firsttime == true){
-                return "You made it in!\n";
+            if (a67>80 && a31>80){
+                textres.setText("Since your not in stream for CS, admissions are competitive. However, You have a good chance at making it in!");
             }
         }
 
-        return "Sorry, you couldn't make it in.\n To see Computer Science POSt Requirements, please refer to: \n https://www.utsc.utoronto.ca/cms/computer-science-post-requirements-2023";
+        textres.setText("Sorry, you couldn't make it in. To see Computer Science POSt Requirements, please refer to: \n https://www.utsc.utoronto.ca/cms/computer-science-post-requirements-2023");
     }
 
+    public void missingField(){
+        Toast.makeText(PostReqActivity.this,"Enter Missing Field",Toast.LENGTH_SHORT).show();
+    }
+
+
 }
+

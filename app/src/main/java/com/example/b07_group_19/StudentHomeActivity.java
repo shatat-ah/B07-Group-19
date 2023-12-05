@@ -12,7 +12,7 @@ import androidx.cardview.widget.CardView;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class StudentHomeActivity extends AppCompatActivity implements  HomeFunction{
-    private CardView post_card, even_card, compl_card, announce_card;
+    private CardView post_card, even_card, compl_card, announce_card, feedback_card;
     private TextView logOut;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +24,8 @@ public class StudentHomeActivity extends AppCompatActivity implements  HomeFunct
         post_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(this, );
-                //startActivity(intent);
+                Intent intent = new Intent(StudentHomeActivity.this, PostReqActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -41,8 +41,8 @@ public class StudentHomeActivity extends AppCompatActivity implements  HomeFunct
         compl_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(this, );
-                //startActivity(intent);
+                Intent intent = new Intent(StudentHomeActivity.this, StudentComplaintView.class);
+                startActivity(intent);
             }
         });
         announce_card = findViewById(R.id.announcement_card);
@@ -53,6 +53,17 @@ public class StudentHomeActivity extends AppCompatActivity implements  HomeFunct
                 startActivity(intent);
             }
         });
+
+        feedback_card = findViewById(R.id.feedback_card);
+        feedback_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*Intent intent = new Intent(StudentHomeActivity.this, AttendedEventsActivity.class);
+                startActivity(intent);*/
+            }
+        });
+
+
 
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
