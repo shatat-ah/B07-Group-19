@@ -32,40 +32,70 @@ public class ExampleUnitTest {
     private LoginActivityPresenter presenter;
 
     @Test
-    public void testCheckDBUser_UserExists_Student() {
+    public void testCheckDBUser_Student() {
         String username = "Ousman";
         String role = "Student";
         String password = "Jikz10";
 
-        doNothing().when(Model).queryDB(presenter,anyString(),anyString(),anyString());
         presenter = new LoginActivityPresenter(View, Model);
+        doNothing().when(Model).queryDB(presenter,anyString(),anyString(),anyString());
         presenter.checkDBuser(username,role,password);
-        verify(View,times(1)).userExist(role);
+        verify(Model,times(1)).queryDB(presenter,username,role,password);
     }
 
     @Test
-    public void testCheckDBUser_UserExists_Admin() {
+    public void testCheckDBUser_Admin() {
         String username = "Bob";
         String role = "Admin";
         String password = "bob123";
 
-        doNothing().when(Model).queryDB(presenter,anyString(),anyString(),anyString());
         presenter = new LoginActivityPresenter(View, Model);
+        doNothing().when(Model).queryDB(presenter,anyString(),anyString(),anyString());
         presenter.checkDBuser(username,role,password);
+        verify(Model,times(1)).queryDB(presenter,username,role,password);
+    }
+
+    @Test
+    public void testCheckDBUser_Admin_UserNotExists() {
+        String role = "Admin";
+
+        doNothing().when(View).userNotFound();
+        presenter = new LoginActivityPresenter(View, Model);
+        presenter.displayResult(false,role);
+
+        verify(View,times(1)).userNotFound();
+    }
+
+    @Test
+    public void testCheckDBUser_Student_UserNotExists() {
+        String role = "Student";
+
+        doNothing().when(View).userNotFound();
+        presenter = new LoginActivityPresenter(View, Model);
+        presenter.displayResult(false,role);
+
+        verify(View,times(1)).userNotFound();
+    }
+
+    @Test
+    public void testCheckDBUser_Student_UserExists() {
+        String role = "Student";
+
+        doNothing().when(View).userExist(anyString());
+        presenter = new LoginActivityPresenter(View, Model);
+        presenter.displayResult(true,role);
+
         verify(View,times(1)).userExist(role);
     }
 
     @Test
-    public void testCheckDBUser_UserNotExists() {
-        String username = "NotOusman";
+    public void testCheckDBUser_Admin_UserExists() {
         String role = "Admin";
-        String password = "Jikz10";
 
-        doNothing().when(Model).queryDB(presenter, anyString(), anyString(), anyString());
         presenter = new LoginActivityPresenter(View, Model);
-        presenter.checkDBuser(username, role, password);
+        presenter.displayResult(false,role);
 
-        verify(View,times(1)).userNotFound();
+        verify(View,times(1)).userExist(role);
     }
 
     @Test
@@ -74,9 +104,10 @@ public class ExampleUnitTest {
         String role = "Student";
         String password = "Jikz10";
 
-        doNothing().when(View).existing_user(anyString(),anyString(),anyString());
-        View.existing_user(username,role,password);
-        verify(View,times(1)).missingField();
+        LoginActivityView loginview = new LoginActivityView();
+        doNothing().when(loginview).existing_user(anyString(),anyString(),anyString());
+        loginview.existing_user(username,role,password);
+        verify(loginview,times(1)).missingField();
     }
 
     @Test
@@ -85,9 +116,10 @@ public class ExampleUnitTest {
         String role = "Student";
         String password = "";
 
-        doNothing().when(View).existing_user(anyString(),anyString(),anyString());
-        View.existing_user(username,role,password);
-        verify(View,times(1)).missingField();
+        LoginActivityView loginview = new LoginActivityView();
+        doNothing().when(loginview).existing_user(anyString(),anyString(),anyString());
+        loginview.existing_user(username,role,password);
+        verify(loginview,times(1)).missingField();
     }
 
     @Test
@@ -96,9 +128,10 @@ public class ExampleUnitTest {
         String role = "Student";
         String password = "";
 
-        doNothing().when(View).existing_user(anyString(), anyString(), anyString());
-        View.existing_user(username, role, password);
-        verify(View, times(1)).missingField();
+        LoginActivityView loginview = new LoginActivityView();
+        doNothing().when(loginview).existing_user(anyString(),anyString(),anyString());
+        loginview.existing_user(username,role,password);
+        verify(loginview,times(1)).missingField();
 
     }
 }
