@@ -127,4 +127,11 @@ public class ExampleUnitTest {
         verify(View,times(1)).missingField();
 
     }
+
+    @Test
+    public void testAuthError_at_Login(){
+        doNothing().when(View).authError();
+        presenter.authError();
+        verify(View,times(1)).authError();
+    }
 }
