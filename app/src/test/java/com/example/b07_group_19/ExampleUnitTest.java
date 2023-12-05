@@ -3,17 +3,23 @@ package com.example.b07_group_19;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.ArgumentMatchers.eq;
+import static org.mockito.ArgumentMatchers.longThat;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Example local unit test, which will execute on the development machine (host).
@@ -28,19 +34,17 @@ public class ExampleUnitTest {
 
     @Mock
     LoginActivityModel Model;
-
-    private LoginActivityPresenter presenter;
+    @InjectMocks
+    LoginActivityPresenter presenter = new LoginActivityPresenter(View,Model);
 
     @Test
-    public void testCheckDBUser_Student() {
+    public void testCheckDBUser_Student() throws InterruptedException{
         String username = "Ousman";
         String role = "Student";
         String password = "Jikz10";
 
-        presenter = new LoginActivityPresenter(View, Model);
-        doNothing().when(Model).queryDB(presenter,anyString(),anyString(),anyString());
         presenter.checkDBuser(username,role,password);
-        verify(Model,times(1)).queryDB(presenter,username,role,password);
+        verify(Model).queryDB(presenter,username,role,password);
     }
 
     @Test
@@ -49,10 +53,9 @@ public class ExampleUnitTest {
         String role = "Admin";
         String password = "bob123";
 
-        presenter = new LoginActivityPresenter(View, Model);
-        doNothing().when(Model).queryDB(presenter,anyString(),anyString(),anyString());
         presenter.checkDBuser(username,role,password);
-        verify(Model,times(1)).queryDB(presenter,username,role,password);
+        verify(Model).queryDB(presenter,username,role,password);
+
     }
 
     @Test
@@ -82,7 +85,6 @@ public class ExampleUnitTest {
         String role = "Student";
 
         doNothing().when(View).userExist(anyString());
-        presenter = new LoginActivityPresenter(View, Model);
         presenter.displayResult(true,role);
 
         verify(View,times(1)).userExist(role);
@@ -92,9 +94,8 @@ public class ExampleUnitTest {
     public void testCheckDBUser_Admin_UserExists() {
         String role = "Admin";
 
-        presenter = new LoginActivityPresenter(View, Model);
-        presenter.displayResult(false,role);
-
+        doNothing().when(View).userExist(anyString());
+        presenter.displayResult(true,role);
         verify(View,times(1)).userExist(role);
     }
 
@@ -104,10 +105,10 @@ public class ExampleUnitTest {
         String role = "Student";
         String password = "Jikz10";
 
-        LoginActivityView loginview = new LoginActivityView();
-        doNothing().when(loginview).existing_user(anyString(),anyString(),anyString());
-        loginview.existing_user(username,role,password);
-        verify(loginview,times(1)).missingField();
+
+        doNothing().when(View).missingField();
+        presenter.checkDBuser(username,role,password);
+        verify(View,times(1)).missingField();
     }
 
     @Test
@@ -116,10 +117,9 @@ public class ExampleUnitTest {
         String role = "Student";
         String password = "";
 
-        LoginActivityView loginview = new LoginActivityView();
-        doNothing().when(loginview).existing_user(anyString(),anyString(),anyString());
-        loginview.existing_user(username,role,password);
-        verify(loginview,times(1)).missingField();
+        doNothing().when(View).missingField();
+        presenter.checkDBuser(username,role,password);
+        verify(View,times(1)).missingField();
     }
 
     @Test
@@ -128,10 +128,9 @@ public class ExampleUnitTest {
         String role = "Student";
         String password = "";
 
-        LoginActivityView loginview = new LoginActivityView();
-        doNothing().when(loginview).existing_user(anyString(),anyString(),anyString());
-        loginview.existing_user(username,role,password);
-        verify(loginview,times(1)).missingField();
+        doNothing().when(View).missingField();
+        presenter.checkDBuser(username,role,password);
+        verify(View,times(1)).missingField();
 
     }
 }
