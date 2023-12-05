@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <TextView
+        android:id="@+id/announcement_successful"
+        android:layout_width="306dp"
+        android:layout_height="69dp"
+        android:layout_marginTop="128dp"
+        android:layout_marginBottom="22dp"
+        android:text="@string/successful_announcement_creation"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/font_white"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/return_home_From_announcement"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/return_home_From_announcement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:layout_marginBottom="528dp"
+        android:backgroundTint="@color/accent_dark"
+        android:text="@string/return_to_homepage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/announcement_successful"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/announcement_successful"
+        app:layout_constraintTop_toBottomOf="@+id/announcement_successful" />
+</androidx.constraintlayout.widget.ConstraintLayout>

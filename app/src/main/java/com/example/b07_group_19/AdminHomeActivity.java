@@ -1,13 +1,13 @@
 package com.example.b07_group_19;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -26,8 +26,8 @@ public class AdminHomeActivity extends AppCompatActivity implements HomeFunction
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(this, );
-                //startActivity(intent);
+                Intent intent = new Intent(AdminHomeActivity.this, EventCreatorView.class);
+                startActivity(intent);
             }
         });
         complaints = findViewById(R.id.complaint_card);
@@ -38,12 +38,13 @@ public class AdminHomeActivity extends AppCompatActivity implements HomeFunction
                 startActivity(intent);
             }
         });
+
         new_announcement = findViewById(R.id.create_announcement_card);
         new_announcement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(this, );
-                //startActivity(intent);
+                Intent intent = new Intent(AdminHomeActivity.this, CreateAnnouncementView.class);
+                startActivity(intent);
             }
         });
 

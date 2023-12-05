@@ -28,8 +28,24 @@
         <item>Student</item>
         <item>Administrator</item>
     </string-array>
+    <string-array name="departmentItems">
+        <item>CS</item>
+        <item>Math</item>
+        <item>Statistics</item>
+    </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_create_announcement">CreateAnnouncement</string>
+    <string name="announcement_title">ANNOUNCEMENT TITLE</string>
+    <string name="announcement_title_hint">Announcement Title (max. 30 char)</string>
+    <string name="announcement_message">MESSAGE</string>
+    <string name="announcement_message_hint">Write your announcement here. (max. 250 char)</string>
+    <string name="cancel_announcement">CANCEL</string>
+    <string name="publish_announcement">PUBLISH</string>
+    <string name="successful_announcement_creation">You\'re announcement has been published.</string>
+    <string name="return_to_homepage">RETURN</string>
+
+=======
     <string name="large_text">
         "Material is the metaphor.\n\n"
 
