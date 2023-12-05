@@ -2,6 +2,7 @@ package com.example.b07_group_19;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -11,6 +12,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 
 
-public class Admin_Indiv_Feedback extends Activity {
+public class Admin_Indiv_Feedback extends AppCompatActivity {
 
     private FirebaseDatabase db;
     private DatabaseReference event_ref;
@@ -45,7 +47,7 @@ public class Admin_Indiv_Feedback extends Activity {
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                backToHome();
             }
         });
 
@@ -55,5 +57,11 @@ public class Admin_Indiv_Feedback extends Activity {
         }
 
         String name = "NAME";
+    }
+
+    private void backToHome(){
+        Intent intent = new Intent(Admin_Indiv_Feedback.this,StudentHomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
