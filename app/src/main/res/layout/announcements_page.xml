@@ -9,6 +9,8 @@
     android:background="@color/accent_light"
     android:paddingBottom="50dp">
 
+
+
     <androidx.core.widget.NestedScrollView
         android:id="@+id/announcements_page"
         android:layout_width="match_parent"
@@ -16,23 +18,11 @@
         android:background="@color/accent_light"
         app:layout_anchorGravity="center"
         app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
-
         <LinearLayout
             android:id="@+id/announcements"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="15dp"
-                android:text="Welcome"
-                android:textAllCaps="true"
-                android:textColor="@color/font_white"
-                android:textSize="30sp"
-                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -65,5 +55,11 @@
 
 
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
