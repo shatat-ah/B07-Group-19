@@ -1,7 +1,11 @@
 package com.example.b07_group_19;
 
 import android.annotation.SuppressLint;
-import android.app.Activity;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -12,17 +16,20 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
-
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 
-public class Admin_Feedback extends Activity {
+
+public class Admin_Feedback extends AppCompatActivity {
 
     private FirebaseDatabase db;
     private DatabaseReference event_ref;
@@ -37,24 +44,33 @@ public class Admin_Feedback extends Activity {
 
         db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference();
-        event_ref = ref.child("events");
+        DatabaseReference feed_ref = ref.child("feedback");
         mAuth = FirebaseAuth.getInstance();
         no_events = findViewById(R.id.NoEvents);
         LinearLayout parentlayout = findViewById(R.id.layout);
         FirebaseUser user = mAuth.getCurrentUser();
+        ArrayList<String> list = new ArrayList<>();
+        Query query = ref;
 
         Button backBtn = findViewById(R.id.backBtnFeedback);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                backToHome();
             }
         });
 
-        String[] Array = new String[]{"badevent", "eventa", "eventb", "eventc", "eventd"};
-        for (int i = 0; i < Array.length; i++) {
-            populateScrollView(Array[i], parentlayout);
-        }
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 
     public void populateScrollView(String eventName, LinearLayout L) {
@@ -92,6 +108,7 @@ public class Admin_Feedback extends Activity {
         cardView.setForegroundGravity(Gravity.CENTER);
         //add card to the linearlayout
         //layout.addView(cardView);
+
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,5 +119,11 @@ public class Admin_Feedback extends Activity {
         });
 
         L.addView(cardView);
+    }
+
+    private void backToHome(){
+        Intent intent = new Intent(Admin_Feedback.this,StudentHomeActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
