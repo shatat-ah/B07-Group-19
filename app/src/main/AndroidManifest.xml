@@ -18,6 +18,15 @@
             android:name=".StudentFeedbackActivity"
             android:exported="false" />
         <activity
+            android:name=".EventCreatorView"
+            android:exported="false" />
+        <activity
+            android:name=".EventDetailsView"
+            android:exported="false" />
+        <activity
+            android:name=".EventListView"
+            android:exported="false" />
+        <activity
             android:name=".AttendedEventsActivity"
             android:exported="false" />
         <activity
