@@ -85,8 +85,7 @@ public class Event {
 
     public int setTime(int year, int month, int day, int hour, int minute) throws DateTimeException {
         try {
-            LocalDateTime newTime = LocalDateTime.of(year, month, day, hour, minute);
-            this.time = newTime;
+            this.time = LocalDateTime.of(year, month, day, hour, minute);
             return 1;
         } catch (DateTimeException e) {
             return 0; //With good UX this should never need to run
