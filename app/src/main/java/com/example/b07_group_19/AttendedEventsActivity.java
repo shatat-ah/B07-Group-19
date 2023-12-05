@@ -94,13 +94,14 @@ public class AttendedEventsActivity extends AppCompatActivity {
        }*/
         //I want an array of simple object which I will use to populate the scroll View
         String[] Array = new String[]{"badevent", "eventa", "eventb", "eventc", "eventd"};
+        String id = user.getUid();
         for (int i = 0; i < Array.length; i++) {
-            populateScrollView(Array[i], parentlayout, "ANFHYAFA877aaf");
+            populateScrollView(Array[i], parentlayout, id);
         }
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                backToHome();
             }
         });
     }

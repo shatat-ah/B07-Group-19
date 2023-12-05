@@ -16,13 +16,14 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class StudentHomeActivity extends AppCompatActivity implements  HomeFunction{
     private CardView post_card, even_card, compl_card, announce_card;
-    private TextView logOut;
+    private TextView logOut, Feedback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_home);
 
         logOut = findViewById(R.id.logout_btn);
+        Feedback = findViewById(R.id.feedback_btn);
         post_card = findViewById(R.id.post_card);
         post_card.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,12 +65,24 @@ public class StudentHomeActivity extends AppCompatActivity implements  HomeFunct
                 redirectLogin(StudentHomeActivity.this);
             }
         });
+
+        Feedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                makefeedback();
+            }
+        });
     }
 
 
     @Override
     public void redirectLogin(Activity activity) {
         Intent intent = new Intent(activity, LoginActivityView.class);
+        startActivity(intent);
+    }
+
+    public void makefeedback() {
+        Intent intent = new Intent(StudentHomeActivity.this, AttendedEventsActivity.class);
         startActivity(intent);
     }
 }
