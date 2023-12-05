@@ -50,6 +50,14 @@ public class PostReqActivity extends Activity {
                 }
             }
         });
+
+        Button backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
     }
 
     public void checkReq(int a22, int a31, int a37, int a48, int a67, CheckBox admission){

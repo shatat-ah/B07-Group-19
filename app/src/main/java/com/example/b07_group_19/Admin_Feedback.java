@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -41,6 +42,14 @@ public class Admin_Feedback extends Activity {
         no_events = findViewById(R.id.NoEvents);
         LinearLayout parentlayout = findViewById(R.id.layout);
         FirebaseUser user = mAuth.getCurrentUser();
+
+        Button backBtn = findViewById(R.id.backBtn);
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
         String[] Array = new String[]{"c", "event", "event", "event", "event", "event", "event", "event", "event"};
         for (int i = 0; i < Array.length; i++) {
