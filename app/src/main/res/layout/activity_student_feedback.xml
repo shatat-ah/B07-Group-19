@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,127 +11,188 @@
 
     <!-- TODO: Update blank fragment layout -->
 
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/homepage_view"
+        android:elevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/homepage_view"
+        android:backgroundTint="@color/accent_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:elevation="10dp"
         android:text="Event Score"
         android:textAlignment="center"
-        android:textStyle="bold"
-        android:textSize="30sp"
         android:textColor="@color/white"
-        android:layout_marginTop="30dp"
-        />
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/radio_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19" />
+
     <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:id="@+id/radio_group"
-        android:layout_marginLeft="50dp"
-        android:layout_marginBottom="10dp"
+        android:layout_width="327dp"
+        android:layout_height="62dp"
 
 
-        >
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/review_summary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view"
+        app:layout_constraintVertical_bias="0.434">
 
 
         <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="1"
-            android:textSize="20sp"
-            android:padding="8dp"
-            android:button="@android:color/transparent"
-            android:background="@drawable/radio_selector"
-            android:elevation="4dp"
             android:id="@+id/r1"
-            android:textAlignment="center"
-            android:layout_margin="8dp" />
-        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2"
-            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:elevation="4dp"
             android:padding="8dp"
+            android:text="1"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <RadioButton
             android:id="@+id/r2"
-            android:textAlignment="center"
-            android:button="@android:color/transparent"
-            android:background="@drawable/radio_selector"
-            android:elevation="4dp"
-            android:layout_margin="8dp"/>
-        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="3"
-            android:textSize="20sp"
+            android:layout_margin="8dp"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:elevation="4dp"
             android:padding="8dp"
+            android:text="2"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <RadioButton
             android:id="@+id/r3"
-            android:button="@android:color/transparent"
-            android:background="@drawable/radio_selector"
-            android:elevation="4dp"
-            android:textAlignment="center"
-            android:layout_margin="8dp"/>
-        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="4"
+            android:layout_margin="8dp"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:elevation="4dp"
+            android:padding="8dp"
+            android:text="3"
+            android:textAlignment="center"
+            android:textSize="20sp" />
+
+        <RadioButton
             android:id="@+id/r4"
-            android:textSize="20sp"
-            android:button="@android:color/transparent"
-            android:background="@drawable/radio_selector"
-            android:elevation="4dp"
-            android:padding="8dp"
-            android:textAlignment="center"
-            android:layout_margin="8dp"/>
-        <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="5"
-            android:textSize="20sp"
-            android:id="@+id/r5"
-            android:button="@android:color/transparent"
+            android:layout_margin="8dp"
             android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
             android:elevation="4dp"
             android:padding="8dp"
+            android:text="4"
             android:textAlignment="center"
-            android:layout_margin="8dp"/>
+            android:textSize="20sp" />
 
-
+        <RadioButton
+            android:id="@+id/r5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:background="@drawable/radio_selector"
+            android:button="@android:color/transparent"
+            android:elevation="4dp"
+            android:padding="8dp"
+            android:text="5"
+            android:textAlignment="center"
+            android:textSize="20sp" />
 
 
     </RadioGroup>
 
 
     <TextView
+        android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@color/accent_dark"
         android:text="Review Summary"
+        android:textColor="@color/white"
         android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="10dp"/>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/review_summary"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/radio_group"
+        app:layout_constraintVertical_bias="0.89" />
 
 
     <EditText
         android:id="@+id/review_summary"
         android:layout_width="match_parent"
         android:layout_height="354dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
         android:background="@color/white"
         android:isScrollContainer="true"
         android:maxLength="400"
-        android:padding="10dp" />
-
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.498" />
 
     <Button
+        android:id="@+id/submit_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Submit"
+        android:layout_marginStart="32dp"
         android:backgroundTint="@color/accent_dark"
+        android:text="SUBMIT"
+
         android:textSize="25sp"
-        android:id="@+id/submit_form"
-        android:background="@color/background"
-        android:layout_gravity="center_horizontal"
-        />
-</LinearLayout>
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/review_summary"
+        app:layout_constraintVertical_bias="0.25" />
+
+    <Button
+        android:id="@+id/close_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="@color/accent_dark"
+        android:text="CLOSE"
+
+        android:textSize="25sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/review_summary"
+        app:layout_constraintVertical_bias="0.25" />
+</androidx.constraintlayout.widget.ConstraintLayout>

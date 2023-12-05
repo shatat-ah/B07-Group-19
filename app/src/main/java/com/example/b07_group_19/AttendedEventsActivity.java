@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -27,6 +28,7 @@ public class AttendedEventsActivity extends AppCompatActivity {
     private FirebaseDatabase db;
     private DatabaseReference event_ref;
     private FirebaseAuth mAuth;
+    private Button home;
     private ArrayList<FeedbackScrollObject> eventList = new ArrayList<>();
 
 
@@ -38,7 +40,7 @@ public class AttendedEventsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_attended_events);
 
-
+        home = (Button)findViewById(R.id.home_btn);
         db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference();
         event_ref = ref.child("events");
@@ -91,41 +93,46 @@ public class AttendedEventsActivity extends AppCompatActivity {
            openLoginActivity();
        }*/
         //I want an array of simple object which I will use to populate the scroll View
-        String[] Array = new String[]{"c", "event", "event", "event", "event", "event", "event", "event", "event"};
+        String[] Array = new String[]{"badevent", "eventa", "eventb", "eventc", "eventd"};
         for (int i = 0; i < Array.length; i++) {
-            populateScrollView(Array[i], parentlayout, "bob@gmail.com");
+            populateScrollView(Array[i], parentlayout, "ANFHYAFA877aaf");
         }
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
     }
 
 
     private void openLoginActivity() {
         Intent intent = new Intent(AttendedEventsActivity.this, LoginActivityView.class);
         startActivity(intent);
+        finish();
+    }
+    private void backToHome(){
+        Intent intent = new Intent(AttendedEventsActivity.this,StudentHomeActivity.class);
+        startActivity(intent);
+        finish();
     }
     /////////////////////////////////////////////////////////////////////////////////////
-
-
-    /////////////////////////////////////////////////////////////////////////////////////////
-    //Add the database events to the schroll view
-    public void populateScrollView(String eventName, LinearLayout L, String email) {
-        //create new linear layout
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.VERTICAL);
-        //create text for the card
-        TextView titleview = new TextView(this);
-        titleview.setText(eventName);
-        titleview.setPadding(5, 5, 5, 5);
-        titleview.setTextSize(25);
+    public TextView createTextView(String text){
+        TextView textView = new TextView(this);
+        textView.setText(text);
+        textView.setPadding(5, 5, 5, 5);
+        textView.setTextSize(25);
         ViewGroup.MarginLayoutParams textLayoutParams = new ViewGroup.MarginLayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
         textLayoutParams.setMargins(1, 10, 1, 1);
-        titleview.setLayoutParams(textLayoutParams);
-        titleview.setGravity(Gravity.CENTER);
-        titleview.setTextColor(Color.WHITE);
-        //create text for the card
-        //Create card
+        textView.setLayoutParams(textLayoutParams);
+        textView.setGravity(Gravity.CENTER);
+        textView.setTextColor(Color.WHITE);
+        return textView;
+    }
+    public CardView createCardView(){
         CardView cardView = new CardView(this);
         cardView.setCardElevation(10);
         cardView.setRadius(16);
@@ -137,29 +144,30 @@ public class AttendedEventsActivity extends AppCompatActivity {
         p.setMargins(5, 8, 5, 8);
         cardView.setLayoutParams(p);
         cardView.setBackgroundColor(Color.rgb(51, 81, 88));
-        cardView.addView(titleview);
         cardView.setForegroundGravity(Gravity.CENTER);
-        //add card to the linearlayout
-        //layout.addView(cardView);
+        return cardView;
+    }
+
+    /////////////////////////////////////////////////////////////////////////////////////////
+    //Add the database events to the schroll view
+    public void populateScrollView(String eventName, LinearLayout L, String ID) {
+        TextView textView = createTextView(eventName);
+        CardView cardView = createCardView();
+        cardView.addView(textView);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFeedbackForm(eventName, email);
+                openFeedbackForm(eventName, ID);
             }
         });
-
-
         L.addView(cardView);
     }
 
-
-    private void openFeedbackForm(String name, String email) {
+    private void openFeedbackForm(String name, String ID) {
         Intent intent = new Intent(AttendedEventsActivity.this, StudentFeedbackActivity.class);
         intent.putExtra("NAME", name);
-        intent.putExtra("EMAIL", email);
+        intent.putExtra("ID", ID);
         startActivity(intent);
-
-
     }
     //Listen for any update to the database event structure, to update scrowwView
 

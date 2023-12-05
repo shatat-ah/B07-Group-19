@@ -23,11 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 public class StudentFeedbackActivity extends AppCompatActivity {
 
 
-    private Button submit_btn;
+    private Button submit_btn, back;
     private EditText summaryText;
     private RadioGroup RG;
     private FirebaseDatabase db;
-    private DatabaseReference eventRevRef;
     private RadioButton RButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,13 +35,13 @@ public class StudentFeedbackActivity extends AppCompatActivity {
 
 
         String event_name = getIntent().getStringExtra("NAME");
-        String student_email = getIntent().getStringExtra("EMAIL");
-        submit_btn = findViewById(R.id.submit_form);
+        String studentID = getIntent().getStringExtra("EMAIL");
+        submit_btn = (Button)findViewById(R.id.submit_btn);
+        back = (Button)findViewById(R.id.close_btn);
         RG = findViewById(R.id.radio_group);
         db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference();
+        DatabaseReference ref = db.getReference().child("feedback");
         // Calling the child method to ensure that eventFeedback node exists 1st
-        eventRevRef = ref.child("eventFeedback").child(event_name);
         summaryText = findViewById(R.id.review_summary);
 
 
@@ -52,22 +51,22 @@ public class StudentFeedbackActivity extends AppCompatActivity {
                 String checked = getChecked(v);
                 int rating = Integer.parseInt(checked);
                 String Summary = summaryText.getText().toString();
-
                 //check if student user did not fill any fields
                 if (TextUtils.isEmpty(Summary) && rating == -1) {
                     Toast.makeText(StudentFeedbackActivity.this, "Choose rating and/or enter summary", Toast.LENGTH_SHORT).show();
-                } else {
-                    Query query = eventRevRef.orderByChild("email").equalTo(student_email);
-                    EventReviewObject revobj = new EventReviewObject(Summary, rating);
+                }
+                else {
+                    Query query = ref.child(event_name).orderByChild("ID").equalTo(studentID);
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.exists()) {
-                                Toast.makeText(StudentFeedbackActivity.this, "User already submitted feedback for this event", Toast.LENGTH_SHORT).show();
-                            } else {
-                                eventRevRef.child(student_email).setValue(revobj);
-                                Toast.makeText(StudentFeedbackActivity.this, "Feedback submission successful!", Toast.LENGTH_SHORT).show();
-                                backToAttendedEvents();
+                            if(snapshot.exists()){
+                                queryResult(true);
+                            }
+                            else{
+                                EventReviewObject obj = new EventReviewObject(Summary,rating);
+                                ref.child(event_name).child(studentID).setValue(obj);
+                                queryResult(false);
                             }
                         }
                         @Override
@@ -78,9 +77,13 @@ public class StudentFeedbackActivity extends AppCompatActivity {
                 }
             }
         });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                backToAttendedEvents();
+            }
+        });
     }
-
-
     public String getChecked(View v){
         int checkedButton  = RG.getCheckedRadioButtonId();
         if(checkedButton == -1){
@@ -96,6 +99,16 @@ public class StudentFeedbackActivity extends AppCompatActivity {
         Intent intent = new Intent(StudentFeedbackActivity.this,AttendedEventsActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void queryResult(boolean found){
+        if(found==true){
+            Toast.makeText(StudentFeedbackActivity.this,"User has already submitted feedback",Toast.LENGTH_SHORT).show();
+        }
+        else{
+            Toast.makeText(StudentFeedbackActivity.this,"Feedback submission successful!",Toast.LENGTH_SHORT).show();
+
+        }
     }
 
 
