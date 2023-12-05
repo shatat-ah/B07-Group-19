@@ -29,4 +29,9 @@ public class LoginActivityPresenter implements PresenterInterface{
             view.userNotFound();
         }
     }
+
+    @Override
+    public void authError() {
+        view.authError();
+    }
 }

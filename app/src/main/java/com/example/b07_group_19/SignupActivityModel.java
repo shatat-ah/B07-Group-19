@@ -47,7 +47,7 @@ public class SignupActivityModel {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.exists()){
-                                presenter.view.uniqueUsername();
+                                presenter.uniqueName();
                             }
                             else{
                                 mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener( new OnCompleteListener<AuthResult>() {

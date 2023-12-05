@@ -23,8 +23,12 @@ public class SignupActivityPresenter implements PresenterInterface{
             view.user_created(role);
         }
     }
-
+    @Override
     public void authError() {
         view.authError();
+    }
+
+    public void uniqueName(){
+        view.uniqueUsername();
     }
 }

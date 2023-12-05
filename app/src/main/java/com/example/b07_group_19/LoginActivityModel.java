@@ -49,7 +49,7 @@ public class LoginActivityModel {
                                     presenter.displayResult(true, role);
                                 }
                                 else{
-                                    presenter.view.authError();
+                                    presenter.authError();
                                 }
                             }
                         });
