@@ -53,8 +53,8 @@ public class AdminHomeActivity extends AppCompatActivity implements HomeFunction
         feedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Intent intent = new Intent(this,);
-                //startActivity(intent);
+                Intent intent = new Intent(AdminHomeActivity.this,Admin_Feedback.class);
+                startActivity(intent);
             }
         });
 

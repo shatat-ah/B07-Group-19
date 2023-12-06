@@ -4,7 +4,9 @@ public class EventReviewObject {
     private String summary;
     private int rating;
 
+    public EventReviewObject(){
 
+    }
     public EventReviewObject(String summary, int rating){
         this.summary = summary;
         this.rating = rating;
