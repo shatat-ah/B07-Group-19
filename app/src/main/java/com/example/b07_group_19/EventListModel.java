@@ -14,6 +14,8 @@ import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +26,7 @@ public class EventListModel {
     public EventListModel(){
         db = FirebaseDatabase.getInstance();
     }
-    public List<Event> getEventInfo(EventListPresenter presenter){
+    public void getEventInfo(EventListPresenter presenter){
         DatabaseReference eventReference = FirebaseDatabase.getInstance().getReference("events");
         Query eventQuery = eventReference.orderByChild("time");
 
@@ -32,10 +34,19 @@ public class EventListModel {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //This... probably works?
-                GenericTypeIndicator<Event> dummyEvent = new GenericTypeIndicator<Event>(){};
                 for(DataSnapshot eventIndex : snapshot.getChildren()) {
-                    Event newEvent = eventIndex.getValue(dummyEvent);
+                    String newTitle = eventIndex.child("title").getValue(String.class);
+                    String newDesc = eventIndex.child("description").getValue(String.class);
+                    String newCreator = eventIndex.child("creator").getValue(String.class);
+                    String newDepartment = eventIndex.child("department").getValue(String.class);
+                    int newMaxParticipants = eventIndex.child("maxParticipants").getValue(Integer.class);
+                    String newTime = eventIndex.child("timeAsString").getValue(String.class);
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("E, MMM dd, yyyy, HH:mm");
+                    LocalDateTime newTimeFormat = LocalDateTime.parse(newTime, format);
+                    //This is absolutely disgusting, but it should work
+                    Event newEvent = new Event(newTitle, newDesc, newCreator, newDepartment, newMaxParticipants, newTimeFormat.getDayOfMonth(), newTimeFormat.getMonthValue(), newTimeFormat.getYear(), newTimeFormat.getHour(), newTimeFormat.getMinute());
                     events.add(newEvent);
+                    presenter.updateEventList(events);
                 }
             }
 
@@ -48,9 +59,20 @@ public class EventListModel {
         eventReference.addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-                Event newEvent = snapshot.getValue(Event.class);
-                events.add(newEvent);
-                presenter.updateEventList(events);
+                for(DataSnapshot eventIndex : snapshot.getChildren()) {
+                    String newTitle = eventIndex.child("title").getValue(String.class);
+                    String newDesc = eventIndex.child("description").getValue(String.class);
+                    String newCreator = eventIndex.child("creator").getValue(String.class);
+                    String newDepartment = eventIndex.child("department").getValue(String.class);
+                    int newMaxParticipants = eventIndex.child("maxParticipants").getValue(Integer.class);
+                    String newTime = eventIndex.child("timeAsString").getValue(String.class);
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("E, MMM dd, yyyy, HH:mm");
+                    LocalDateTime newTimeFormat = LocalDateTime.parse(newTime, format);
+                    //This is absolutely disgusting, but it should work
+                    Event newEvent = new Event(newTitle, newDesc, newCreator, newDepartment, newMaxParticipants, newTimeFormat.getDayOfMonth(), newTimeFormat.getMonthValue(), newTimeFormat.getYear(), newTimeFormat.getHour(), newTimeFormat.getMinute());
+                    events.add(newEvent);
+                    presenter.updateEventList(events);
+                }
             }
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
@@ -64,9 +86,20 @@ public class EventListModel {
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot snapshot) {
-                Event lostEvent = snapshot.getValue(Event.class);
-                events.remove(lostEvent);
-                presenter.updateEventList(events);
+                for(DataSnapshot eventIndex : snapshot.getChildren()) {
+                    String newTitle = eventIndex.child("title").getValue(String.class);
+                    String newDesc = eventIndex.child("description").getValue(String.class);
+                    String newCreator = eventIndex.child("creator").getValue(String.class);
+                    String newDepartment = eventIndex.child("department").getValue(String.class);
+                    int newMaxParticipants = eventIndex.child("maxParticipants").getValue(Integer.class);
+                    String newTime = eventIndex.child("timeAsString").getValue(String.class);
+                    DateTimeFormatter format = DateTimeFormatter.ofPattern("E, MMM dd, yyyy, HH:mm");
+                    LocalDateTime newTimeFormat = LocalDateTime.parse(newTime, format);
+                    //This is absolutely disgusting, but it should work
+                    Event newEvent = new Event(newTitle, newDesc, newCreator, newDepartment, newMaxParticipants, newTimeFormat.getDayOfMonth(), newTimeFormat.getMonthValue(), newTimeFormat.getYear(), newTimeFormat.getHour(), newTimeFormat.getMinute());
+                    events.add(newEvent);
+                    presenter.updateEventList(events);
+                }
             }
 
             @Override
@@ -74,6 +107,5 @@ public class EventListModel {
                 presenter.eventLoadFailed();
             }
         });
-        return(events);
     }
 }
