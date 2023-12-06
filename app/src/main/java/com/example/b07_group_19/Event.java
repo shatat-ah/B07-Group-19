@@ -13,11 +13,13 @@ public class Event {
     private String department;
     private int maxParticipants;
     private int currentParticipants;
-    private LocalDateTime time;
+    private String time;
     private String creator;
     public Event(String title, String description, String creator, String department, int maxParticipants, int day, int month, int year, int hour, int minute){
         try{
-            this.time = LocalDateTime.of(year, month, day, hour, minute);
+            LocalDateTime time = LocalDateTime.of(year, month, day, hour, minute);
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("E, MMM dd, yyyy, HH:mm");
+            this.time = time.format(format);
         } catch (DateTimeException e) {
             //With good UX this should never need to run
         }
@@ -47,6 +49,10 @@ public class Event {
         return this.rsvpList;
     }
 
+
+    public String getDepartment() {
+        return this.department;
+    }
 
     public int addParticipant(String student) {
         if (this.currentParticipants == this.maxParticipants)
@@ -78,20 +84,22 @@ public class Event {
     }
 
 
-    public LocalDateTime getTime(){
+    public String getTimeAsString(){
         return this.time;
     }
 
 
-    public String getTimeAsString(){ //Supplant this into the view model instead when that's done
+    public LocalDateTime getTime(){ //Supplant this into the view model instead when that's done
         DateTimeFormatter format = DateTimeFormatter.ofPattern("E, MMM dd, yyyy, HH:mm");
-        return this.time.format(format);
+        return LocalDateTime.parse(this.time, format);
     }
 
 
     public int setTime(int year, int month, int day, int hour, int minute) throws DateTimeException {
         try {
-            this.time = LocalDateTime.of(year, month, day, hour, minute);
+            LocalDateTime time = LocalDateTime.of(year, month, day, hour, minute);
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("E, MMM dd, yyyy, HH:mm");
+            this.time = time.format( format);
             return 1;
         } catch (DateTimeException e) {
             return 0; //With good UX this should never need to run
