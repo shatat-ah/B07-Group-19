@@ -82,7 +82,7 @@ public class Admin_Indiv_Feedback extends AppCompatActivity {
     }
 
     private void backToHome(){
-        Intent intent = new Intent(Admin_Indiv_Feedback.this,StudentHomeActivity.class);
+        Intent intent = new Intent(Admin_Indiv_Feedback.this,AdminHomeActivity.class);
         startActivity(intent);
         finish();
     }

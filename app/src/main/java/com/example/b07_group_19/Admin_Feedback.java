@@ -63,7 +63,15 @@ public class Admin_Feedback extends AppCompatActivity {
         query.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
+                if(snapshot.exists()){
+                    for (DataSnapshot eventname: snapshot.getChildren()){
+                        String eventName = snapshot.child("eventname").getValue(String.class);
+                        list.add(eventName);
+                    }
+                    for (String name: list){
+                        populateScrollView(name,parentlayout);
+                    }
+                }
             }
 
             @Override
@@ -122,7 +130,7 @@ public class Admin_Feedback extends AppCompatActivity {
     }
 
     private void backToHome(){
-        Intent intent = new Intent(Admin_Feedback.this,StudentHomeActivity.class);
+        Intent intent = new Intent(Admin_Feedback.this,AdminHomeActivity.class);
         startActivity(intent);
         finish();
     }
