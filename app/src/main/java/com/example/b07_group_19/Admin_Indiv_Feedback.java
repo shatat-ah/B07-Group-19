@@ -83,7 +83,7 @@ public class Admin_Indiv_Feedback extends AppCompatActivity {
         TextView textView = new TextView(this);
         textView.setText(text);
         textView.setPadding(5, 5, 5, 5);
-        textView.setTextSize(18);
+        textView.setTextSize(22);
         ViewGroup.MarginLayoutParams textLayoutParams = new ViewGroup.MarginLayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
