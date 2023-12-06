@@ -38,7 +38,7 @@ public class EventDetailsModel {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if(snapshot.exists()){
-                                Event eventOutput = snapshot.getValue(Event.class);
+                                Event eventOutput = (Event) snapshot.getValue();
                                 presenter.updateEventInfo(eventOutput);
                             }
                             else{
