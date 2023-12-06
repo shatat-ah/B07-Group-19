@@ -21,6 +21,9 @@
             android:name=".EventCreatorView"
             android:exported="false" />
         <activity
+            android:name=".Admin_Feedback"
+            android:exported="false" />
+        <activity
             android:name=".EventDetailsView"
             android:exported="false" />
         <activity

@@ -97,7 +97,7 @@ public class Admin_Feedback extends AppCompatActivity {
         textLayoutParams.setMargins(1, 10, 1, 1);
         titleview.setLayoutParams(textLayoutParams);
         titleview.setGravity(Gravity.CENTER);
-        titleview.setTextColor(Color.BLACK);
+        titleview.setTextColor(Color.WHITE);
         //create text for the card
         //Create card
         CardView cardView = new CardView(this);
