@@ -22,7 +22,7 @@ public class EventListModel {
     public EventListModel(){
         db = FirebaseDatabase.getInstance();
     }
-    public void getEventInfo(EventListPresenter presenter){
+    public List<Event> getEventInfo(EventListPresenter presenter){
         DatabaseReference eventReference = FirebaseDatabase.getInstance().getReference("events");
         Query eventQuery = eventReference.orderByChild("time");
 
@@ -35,6 +35,7 @@ public class EventListModel {
                     Event newEvent = snapshotIndex.getValue(Event.class);
                     events.add(newEvent);
                 }
+                return(events);
             }
 
             @Override
