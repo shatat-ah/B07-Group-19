@@ -18,6 +18,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class EventListView extends AppCompatActivity{
@@ -28,7 +29,7 @@ public class EventListView extends AppCompatActivity{
     EventListPresenter presenter;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) 
+    protected void onCreate(Bundle savedInstanceState){
         eventsList = new ArrayList<Event>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_register_view);

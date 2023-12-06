@@ -13,6 +13,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,6 +23,8 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 public class StudentFeedbackActivity extends AppCompatActivity {
+
+
 
 
     private Button submit_btn, back;
@@ -34,8 +38,11 @@ public class StudentFeedbackActivity extends AppCompatActivity {
         setContentView(R.layout.activity_student_feedback);
 
 
+
+
         String event_name = getIntent().getStringExtra("NAME");
-        String studentID = getIntent().getStringExtra("EMAIL");
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        String id = user.getUid();
         submit_btn = (Button)findViewById(R.id.submit_btn);
         back = (Button)findViewById(R.id.close_btn);
         RG = findViewById(R.id.radio_group);
@@ -56,7 +63,7 @@ public class StudentFeedbackActivity extends AppCompatActivity {
                     Toast.makeText(StudentFeedbackActivity.this, "Choose rating and/or enter summary", Toast.LENGTH_SHORT).show();
                 }
                 else {
-                    Query query = ref.child(event_name).orderByChild("ID").equalTo(studentID);
+                    Query query = ref.child(event_name).child(id);
                     query.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -65,12 +72,13 @@ public class StudentFeedbackActivity extends AppCompatActivity {
                             }
                             else{
                                 EventReviewObject obj = new EventReviewObject(Summary,rating);
-                                ref.child(event_name).child(studentID).setValue(obj);
+                                ref.child(event_name).child(id).setValue(obj);
                                 queryResult(false);
                             }
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
+
 
                         }
                     });
@@ -95,11 +103,13 @@ public class StudentFeedbackActivity extends AppCompatActivity {
         }
     }
 
+
     public void backToAttendedEvents(){
         Intent intent = new Intent(StudentFeedbackActivity.this,AttendedEventsActivity.class);
         startActivity(intent);
         finish();
     }
+
 
     public void queryResult(boolean found){
         if(found==true){
@@ -107,13 +117,8 @@ public class StudentFeedbackActivity extends AppCompatActivity {
         }
         else{
             Toast.makeText(StudentFeedbackActivity.this,"Feedback submission successful!",Toast.LENGTH_SHORT).show();
-
         }
+        backToAttendedEvents();
+        finish();
     }
-
-
-
-
-
-
 }

@@ -1,5 +1,6 @@
 package com.example.b07_group_19;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -12,11 +13,17 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -47,7 +54,7 @@ public class AttendedEventsActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         LinearLayout parentlayout = findViewById(R.id.layout1);
         FirebaseUser user = mAuth.getCurrentUser();
-       /*if (user != null){
+        if (user != null){
            String user_email = user.getEmail();
            Query query = event_ref.orderByChild("rvspList").equalTo(user_email);
 
@@ -86,25 +93,19 @@ public class AttendedEventsActivity extends AppCompatActivity {
 
                }
            });
+            home.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    backToHome();
+                }
+            });
        }
        else{
            //go to login?
            Toast.makeText(AttendedEventsActivity.this,"no user found",Toast.LENGTH_SHORT).show();
            openLoginActivity();
-       }*/
-        //I want an array of simple object which I will use to populate the scroll View
-        String[] Array = new String[]{"badevent", "eventa", "eventb", "eventc", "eventd"};
-        for (int i = 0; i < Array.length; i++) {
-            populateScrollView(Array[i], parentlayout, "ANFHYAFA877aaf");
-        }
-        home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+       }
     }
-
 
     private void openLoginActivity() {
         Intent intent = new Intent(AttendedEventsActivity.this, LoginActivityView.class);
@@ -157,16 +158,15 @@ public class AttendedEventsActivity extends AppCompatActivity {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openFeedbackForm(eventName, ID);
+                openFeedbackForm(eventName);
             }
         });
         L.addView(cardView);
     }
 
-    private void openFeedbackForm(String name, String ID) {
+    private void openFeedbackForm(String name) {
         Intent intent = new Intent(AttendedEventsActivity.this, StudentFeedbackActivity.class);
         intent.putExtra("NAME", name);
-        intent.putExtra("ID", ID);
         startActivity(intent);
     }
     //Listen for any update to the database event structure, to update scrowwView

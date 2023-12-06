@@ -8,8 +8,8 @@
     android:orientation="vertical"
     android:background="@color/background">
 
-
     <!-- TODO: Update blank fragment layout -->
+
 
     <View
         android:id="@+id/view"
@@ -21,6 +21,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     <View
         android:id="@+id/view3"
         android:layout_width="match_parent"
@@ -31,6 +32,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
 
 
     <TextView
@@ -48,10 +51,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.19" />
 
+
     <RadioGroup
         android:id="@+id/radio_group"
         android:layout_width="327dp"
         android:layout_height="62dp"
+
+
 
 
         android:orientation="horizontal"
@@ -59,7 +65,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view"
-        app:layout_constraintVertical_bias="0.434">
+        app:layout_constraintVertical_bias="0.32999998">
+
+
 
 
         <RadioButton
@@ -75,6 +83,7 @@
             android:textAlignment="center"
             android:textSize="20sp" />
 
+
         <RadioButton
             android:id="@+id/r2"
             android:layout_width="wrap_content"
@@ -87,6 +96,7 @@
             android:text="2"
             android:textAlignment="center"
             android:textSize="20sp" />
+
 
         <RadioButton
             android:id="@+id/r3"
@@ -101,6 +111,7 @@
             android:textAlignment="center"
             android:textSize="20sp" />
 
+
         <RadioButton
             android:id="@+id/r4"
             android:layout_width="wrap_content"
@@ -113,6 +124,7 @@
             android:text="4"
             android:textAlignment="center"
             android:textSize="20sp" />
+
 
         <RadioButton
             android:id="@+id/r5"
@@ -128,7 +140,11 @@
             android:textSize="20sp" />
 
 
+
+
     </RadioGroup>
+
+
 
 
     <TextView
@@ -136,6 +152,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
         android:background="@color/accent_dark"
         android:text="Review Summary"
@@ -149,11 +166,14 @@
         app:layout_constraintVertical_bias="0.89" />
 
 
+
+
     <EditText
         android:id="@+id/review_summary"
         android:layout_width="match_parent"
         android:layout_height="354dp"
         android:layout_marginStart="32dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="32dp"
         android:background="@color/white"
         android:isScrollContainer="true"
@@ -166,6 +186,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.498" />
 
+
     <Button
         android:id="@+id/submit_btn"
         android:layout_width="wrap_content"
@@ -174,12 +195,14 @@
         android:backgroundTint="@color/accent_dark"
         android:text="SUBMIT"
 
+
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/review_summary"
         app:layout_constraintVertical_bias="0.25" />
+
 
     <Button
         android:id="@+id/close_btn"
@@ -188,6 +211,7 @@
         android:layout_marginEnd="32dp"
         android:backgroundTint="@color/accent_dark"
         android:text="CLOSE"
+
 
         android:textSize="25sp"
         android:textStyle="bold"
