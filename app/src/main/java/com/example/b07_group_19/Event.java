@@ -29,6 +29,10 @@ public class Event {
         this.rsvpList = new ArrayList<String>();
         this.currentParticipants = 0;
     }
+
+    public Event(){
+    }
+
     public String getTitle(){
         return this.title;
     }
