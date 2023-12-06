@@ -32,7 +32,7 @@ public class EventListModel {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //This... probably works?
                 for (DataSnapshot snapshotIndex : snapshot.getChildren()) {
-                    Event newEvent = (Event) snapshotIndex.getValue();
+                    Event newEvent = snapshotIndex.getValue(Event.class);
                     events.add(newEvent);
                 }
             }
