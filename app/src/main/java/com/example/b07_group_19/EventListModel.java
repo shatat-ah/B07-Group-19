@@ -10,6 +10,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
@@ -19,6 +20,7 @@ import java.util.List;
 public class EventListModel {
 
     FirebaseDatabase db;
+    List<Event> events = new ArrayList<>();
     public EventListModel(){
         db = FirebaseDatabase.getInstance();
     }
@@ -26,14 +28,12 @@ public class EventListModel {
         DatabaseReference eventReference = FirebaseDatabase.getInstance().getReference("events");
         Query eventQuery = eventReference.orderByChild("time");
 
-        List<Event> events = new ArrayList<>();
         eventQuery.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //This... probably works?
                 GenericTypeIndicator<List<Event>> dummyEvent = new GenericTypeIndicator<List<Event>>() {};
                 events = snapshot.getValue(dummyEvent);
-                return(events);
             }
 
             @Override
@@ -49,7 +49,6 @@ public class EventListModel {
                 events.add(newEvent);
                 presenter.updateEventList(events);
             }
-
             @Override
             public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
                 //aaaaaauuuuggghhhh I don't wanna
@@ -72,5 +71,6 @@ public class EventListModel {
                 presenter.eventLoadFailed();
             }
         });
+        return(events);
     }
 }
