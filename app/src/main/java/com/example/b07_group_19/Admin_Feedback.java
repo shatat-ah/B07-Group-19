@@ -122,6 +122,7 @@ public class Admin_Feedback extends AppCompatActivity {
             public void onClick(View v) {
                 //Open a new .java file dor indiv event Admin_Feedback
                 Intent intent = new Intent(Admin_Feedback.this, Admin_Indiv_Feedback.class);
+                intent.putExtra("EVENT",eventName);
                 startActivity(intent);
             }
         });
