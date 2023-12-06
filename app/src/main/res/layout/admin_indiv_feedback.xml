@@ -21,13 +21,13 @@
         android:id="@+id/backBtnIndiv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
         android:backgroundTint="@color/accent_light"
-        android:textColor="@color/font_black"
         android:text="BACK To Home"
+        android:textColor="@color/font_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
 
     <TextView
         android:id="@+id/titleIndivFeedback"
@@ -46,16 +46,16 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ScrollView
+        android:id="@+id/scrollView3"
         android:layout_width="413dp"
-        android:layout_height="556dp"
+        android:layout_height="433dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/page_element"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toBottomOf="@+id/page_element">
 
         <LinearLayout
             android:id="@+id/layout"
@@ -69,8 +69,10 @@
                 android:id="@+id/NoEvents"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No Feedback"
-                android:textColor="@color/accent_grey"/>
+                android:background="@color/accent_dark"
+                android:text=""
+                android:textColor="@color/white"
+                android:textSize="20dp" />
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

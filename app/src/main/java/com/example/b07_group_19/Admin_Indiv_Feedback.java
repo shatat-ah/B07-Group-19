@@ -31,10 +31,7 @@ import java.util.ArrayList;
 public class Admin_Indiv_Feedback extends AppCompatActivity {
 
     private FirebaseDatabase db;
-    private DatabaseReference event_ref;
-    private FirebaseAuth mAuth;
     private TextView no_feed;
-    private ArrayList<String> eventList = new ArrayList<>();
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,12 +50,17 @@ public class Admin_Indiv_Feedback extends AppCompatActivity {
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                for(DataSnapshot user_feedback_snapshot: snapshot.getChildren()){
-                    String userID = user_feedback_snapshot.getKey();
-                    EventReviewObject obj = user_feedback_snapshot.getValue(EventReviewObject.class);
-                    String summary = obj.getSummary();
-                    int rating = obj.getRating();
-                    populateScrollView(userID, rating, summary,parentlayout);
+                if(snapshot.exists()){
+                    for(DataSnapshot user_feedback_snapshot: snapshot.getChildren()){
+                        String userID = user_feedback_snapshot.getKey();
+                        EventReviewObject obj = user_feedback_snapshot.getValue(EventReviewObject.class);
+                        String summary = obj.getSummary();
+                        int rating = obj.getRating();
+                        populateScrollView(userID, rating, summary,parentlayout);
+                    }
+                }
+                else{
+                    no_feed.setText("No Feedback Available");
                 }
             }
 
@@ -81,15 +83,15 @@ public class Admin_Indiv_Feedback extends AppCompatActivity {
         TextView textView = new TextView(this);
         textView.setText(text);
         textView.setPadding(5, 5, 5, 5);
-        textView.setTextSize(25);
+        textView.setTextSize(18);
         ViewGroup.MarginLayoutParams textLayoutParams = new ViewGroup.MarginLayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
         );
-        textLayoutParams.setMargins(1, 10, 1, 1);
+        textLayoutParams.setMargins(5, 5, 5, 5);
         textView.setLayoutParams(textLayoutParams);
         textView.setGravity(Gravity.CENTER);
-        textView.setTextColor(Color.WHITE);
+        textView.setTextColor(Color.BLACK);
         return textView;
     }
 
