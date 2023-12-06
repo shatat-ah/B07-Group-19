@@ -31,10 +31,8 @@ public class EventListModel {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 //This... probably works?
-                for (DataSnapshot snapshotIndex : snapshot.getChildren()) {
-                    Event newEvent = snapshotIndex.getValue(Event.class);
-                    events.add(newEvent);
-                }
+                GenericTypeIndicator<List<Event>> dummyEvent = new GenericTypeIndicator<List<Event>>() {};
+                events = snapshot.getValue(dummyEvent);
                 return(events);
             }
 
