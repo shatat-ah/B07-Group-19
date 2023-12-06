@@ -221,6 +221,6 @@
         android:textColor="@color/accent_grey"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollView2" />
+        app:layout_constraintTop_toBottomOf="@+id/scrollPostReq" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

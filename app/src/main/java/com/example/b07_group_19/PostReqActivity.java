@@ -1,6 +1,5 @@
 package com.example.b07_group_19;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,8 +15,6 @@ public class PostReqActivity extends Activity {
     public EditText texta22, texta31, texta37, texta48, texta67;
     int inta22,inta31,inta37,inta48,inta67;
     private Button result_button;
-
-    private TextView textres;
     private CheckBox admission; // Are they in stream or not?
 
     @Override
@@ -64,21 +61,26 @@ public class PostReqActivity extends Activity {
 
     public void checkReq(int a22, int a31, int a37, int a48, int a67, CheckBox admission){
 
+        TextView textres = findViewById(R.id.result_text);
+        String msg;
         int avg = (a22 + a31 + a37 + a48 + a67)/5;
         textres.setText(String.valueOf(findViewById(R.id.result_text)));
 
         if (admission.isChecked()){
             if (a48>73 && avg>70 && ((a22>60 && a37>60) || (a67>60 && a37>60) || (a22>60 && a67>60))){
-                textres.setText("Result Message: Congratulations! You made it in");
+                msg = "Result Message: Congratulations! You made it in";
+                textres.setText(msg);
             }
         }
         else{
             if (a67>80 && a31>80){
-                textres.setText("Since your not in stream for CS, admissions are competitive. However, You have a good chance at making it in!");
+                msg = "Since your not in stream for CS, admissions are competitive. However, You have a good chance at making it in!";
+                textres.setText(msg);
             }
         }
 
-        textres.setText("Sorry, you couldn't make it in. To see Computer Science POSt Requirements, please refer to: \n https://www.utsc.utoronto.ca/cms/computer-science-post-requirements-2023");
+        msg = "Sorry, you couldn't make it in. To see Computer Science POSt Requirements, please refer to: \\n https://www.utsc.utoronto.ca/cms/computer-science-post-requirements-2023";
+        textres.setText(msg);
     }
 
     public void backToHome(){
