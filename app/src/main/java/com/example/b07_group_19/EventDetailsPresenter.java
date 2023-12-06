@@ -19,6 +19,9 @@ public class EventDetailsPresenter {
         view.currentEvent = event;
     }
 
+    public void updateDbEvent(Event event) {
+        model.updateDbEvent(this, event);
+    }
     public String getUserEmail() {
         return model.getUserEmail();
     }

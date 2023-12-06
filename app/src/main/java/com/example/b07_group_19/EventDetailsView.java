@@ -57,6 +57,7 @@ public class EventDetailsView extends AppCompatActivity{
             public void onClick(View v) {
                 if (buttonActive) {
                     currentEvent.addParticipant(email);
+                    presenter.updateDbEvent(currentEvent);
                     registerButton.setText("Cancel RSVP");
                     buttonActive = !buttonActive;
                 } else {
