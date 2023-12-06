@@ -29,7 +29,7 @@ public class EventListView extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) 
-        evenstList = new ArrayList<Event>();
+        eventsList = new ArrayList<Event>();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event_register_view);
 
