@@ -68,7 +68,9 @@ public class EventCreatorView extends AppCompatActivity{
                 maxParticipants = Integer.parseInt(eventParticipants.getText().toString()); //There has to be a better way of doing this
                 creator = presenter.getEmail();
                 day = eventDate.getDayOfMonth();
+                day = day + 1; //This converts the number to LocalDateTime format
                 month = eventDate.getMonth();
+                month = month + 1; //This converts the number to LocalDateTime format
                 year = eventDate.getYear();
                 hour = eventTime.getHour();
                 minute = eventTime.getMinute();
