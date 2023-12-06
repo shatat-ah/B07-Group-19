@@ -37,7 +37,7 @@ public class EventListView extends AppCompatActivity{
         presenter = new EventListPresenter(this, new EventListModel());
         eventsListView = findViewById(R.id.active_event_list);
         backHome = findViewById(R.id.switch_student_home);
-        presenter.getEventList();
+        evensList = presenter.getEventList();
         ArrayAdapter<Event> eventArrayAdapter = new ArrayAdapter<Event>(this, android.R.layout.simple_list_item_1, eventsList);
         eventsListView.setAdapter(eventArrayAdapter);
         eventsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
