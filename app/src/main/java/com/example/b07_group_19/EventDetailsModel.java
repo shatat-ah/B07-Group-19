@@ -72,6 +72,34 @@ public class EventDetailsModel {
             }
         });
     }
+
+    public void updateDbEvent(EventDetailsPresenter presenter, Event event) {
+        DatabaseReference reference = db.getReference();
+        DatabaseReference eventReference = reference.child("events");
+        Query query = eventReference.orderByChild("title").equalTo(event.getTitle());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                eventReference.child(event.getTitle()).addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if(snapshot.exists()){
+                            eventReference.child(event.getTitle()).setValue(event);
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                presenter.eventNotFound();
+            }
+        });
+    }
+
     public String getUserEmail(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         return user.getEmail();
