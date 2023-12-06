@@ -11,8 +11,8 @@ public class EventListPresenter {
         this.view = view;
     }
 
-    public List<Event> getEventList() {
-        return model.getEventInfo(this);
+    public void getEventList() {
+        model.getEventInfo(this);
     }
 
     public void updateEventList(List<Event> updatedList) {
