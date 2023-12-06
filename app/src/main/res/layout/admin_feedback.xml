@@ -68,7 +68,7 @@
                 android:id="@+id/NoEvents"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="No Feedback"
+                android:text=""
                 android:textColor="@color/accent_grey" />
 
 

@@ -32,10 +32,7 @@ import java.util.ArrayList;
 public class Admin_Feedback extends AppCompatActivity {
 
     private FirebaseDatabase db;
-    private DatabaseReference event_ref;
-    private FirebaseAuth mAuth;
     private TextView no_events;
-    private ArrayList<FeedbackScrollObject> eventList = new ArrayList<>();
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +42,10 @@ public class Admin_Feedback extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference();
         DatabaseReference feed_ref = ref.child("feedback");
-        mAuth = FirebaseAuth.getInstance();
         no_events = findViewById(R.id.NoEvents);
         LinearLayout parentlayout = findViewById(R.id.layout);
-        FirebaseUser user = mAuth.getCurrentUser();
         ArrayList<String> list = new ArrayList<>();
-        Query query = ref;
+        Query query = feed_ref;
 
         Button backBtn = findViewById(R.id.backBtnFeedback);
         backBtn.setOnClickListener(new View.OnClickListener() {
@@ -64,13 +59,16 @@ public class Admin_Feedback extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                    for (DataSnapshot eventname: snapshot.getChildren()){
-                        String eventName = snapshot.child("eventname").getValue(String.class);
-                        list.add(eventName);
+                    for (DataSnapshot eventName: snapshot.getChildren()){
+                        String eventname = eventName.getKey();
+                        list.add(eventname);
                     }
                     for (String name: list){
                         populateScrollView(name,parentlayout);
                     }
+                }
+                else{
+                    no_events.setText("No Feedback Available");
                 }
             }
 
@@ -83,8 +81,6 @@ public class Admin_Feedback extends AppCompatActivity {
 
     public void populateScrollView(String eventName, LinearLayout L) {
         //create new linear layout
-        LinearLayout layout = new LinearLayout(this);
-        layout.setOrientation(LinearLayout.VERTICAL);
         //create text for the card
         TextView titleview = new TextView(this);
         titleview.setText(eventName);
@@ -108,7 +104,6 @@ public class Admin_Feedback extends AppCompatActivity {
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 200
         );
-        no_events.setText(" ");
         p.setMargins(5, 8, 5, 8);
         cardView.setLayoutParams(p);
         cardView.setBackgroundColor(Color.rgb(51, 81, 88));
@@ -116,7 +111,6 @@ public class Admin_Feedback extends AppCompatActivity {
         cardView.setForegroundGravity(Gravity.CENTER);
         //add card to the linearlayout
         //layout.addView(cardView);
-
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
